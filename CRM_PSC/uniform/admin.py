@@ -1,3 +1,16 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Uniform
+
+
+@admin.register(Uniform)
+class UniformAdmin(admin.ModelAdmin):
+    list_display = "name", "description", "size"
+    list_display_links = ("name",)
+    ordering = "-name", "size"
+    search_fields = "name", "description", "size"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "size",),
+        }),
+    ]
