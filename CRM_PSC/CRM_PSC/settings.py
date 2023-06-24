@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'worker.apps.WorkerConfig',
+    'briefing.apps.BriefingConfig',
+    'document.apps.DocumentConfig',
+    'uniform.apps.UniformConfig',
 ]
 
 MIDDLEWARE = [
