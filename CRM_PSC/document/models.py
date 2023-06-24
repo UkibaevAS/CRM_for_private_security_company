@@ -13,9 +13,9 @@ class Document(models.Model):
         verbose_name_plural = _('Documents')
 
     name = models.CharField(max_length=30, db_index=True, verbose_name=_('name'))
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True, verbose_name=_('series_and_number'))
-    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True, verbose_name=_('date_issue'))
-    date_expiration = models.CharField(max_length=10, null=False, blank=False, db_index=True, verbose_name=_('date_expiration'))
+    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True, help_text=_("format data: dd.mm.yyyy"), verbose_name=_('series_and_number'))
+    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True, help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_issue'))
+    date_expiration = models.CharField(max_length=10, null=False, blank=False, db_index=True, help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_expiration'))
     who_issued = models.CharField(max_length=50, null=False, blank=False, db_index=True, verbose_name=_('who_issued'))
     place_registration = models.CharField(max_length=150, null=False, blank=False, db_index=True, verbose_name=_('place_registration'))
     place_of_residence = models.CharField(max_length=150, null=False, blank=False, db_index=True, verbose_name=_('place_of_residence'))
