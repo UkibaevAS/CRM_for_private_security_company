@@ -16,6 +16,13 @@ def maintenance_report_directory_path(instance: "Alarm_system", filename: str) -
     )
 
 
+def installation_report_directory_path(instance: "Alarm_system", filename: str) -> str:
+    return "installation_report_alarm_system/maintenance_report_{pk}/{filename}".format(
+        pk=instance.pk,
+        filename=filename,
+    )
+
+
 class Alarm_system(models.Model):
     class Meta:
         verbose_name = _('Alarm_system')
@@ -30,10 +37,12 @@ class Alarm_system(models.Model):
                                     verbose_name=_('certificate'))
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"), verbose_name=_('installation_date'))
+    installation_report = models.ImageField(null=True, blank=True, upload_to=installation_report_directory_path,
+                                            verbose_name=_('installation_report'))
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture'))
+                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date'))
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,

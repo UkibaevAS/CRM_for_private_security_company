@@ -12,8 +12,8 @@ class Alarm_systemAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
             "fields": ("name", "description", "factory_number", "certificate",
-                       "date_manufacture", "receipt_date", "installation_date", "maintenance_interval",
-                       "service_date", "service_date_next", "maintenance_report"
+                       "date_manufacture", "receipt_date", "installation_date", "installation_report",
+                       "maintenance_interval", "service_date", "service_date_next", "maintenance_report"
                        ),
         }),
     ]
