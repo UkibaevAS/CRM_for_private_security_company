@@ -161,3 +161,36 @@ class Video_recorder(models.Model):
                                          verbose_name=_('service_date_next_video_recorder'))
     maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
                                            verbose_name=_('maintenance_report_video_recorder'))
+
+
+class Radio_station(models.Model):
+    class Meta:
+        verbose_name = _('Radio_station')
+        verbose_name_plural = _('Radio_stations')
+
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_radio_station'))
+    description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
+                                   verbose_name=_('description_radio_station'))
+    factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+                                      verbose_name=_('factory_number_radio_station'))
+    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
+                                    verbose_name=_('certificate_radio_station'))
+    installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                         help_text=_("format data: dd.mm.yyyy"),
+                                         verbose_name=_('installation_date_radio_station'))
+    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+                                            verbose_name=_('maintenance_interval_radio_station'))
+    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                        help_text=_("format data: dd.mm.yyyy"),
+                                        verbose_name=_('date_manufacture_radio_station'))
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                    help_text=_("format data: dd.mm.yyyy"),
+                                    verbose_name=_('receipt_date_radio_station'))
+    service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                    help_text=_("format data: dd.mm.yyyy"),
+                                    verbose_name=_('service_date_radio_station'))
+    service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                         help_text=_("format data: dd.mm.yyyy"),
+                                         verbose_name=_('service_date_next_radio_station'))
+    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
+                                           verbose_name=_('maintenance_report_radio_station'))

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Uniform, Gun, Armor, Video_recorder, Handcuffs, Rubber_stick, Special_spray
+from .models import Uniform, Gun, Armor, Video_recorder, Handcuffs, Rubber_stick, Special_spray, Radio_station
 
 
 @admin.register(Uniform)
@@ -87,6 +87,22 @@ class ArmorAdmin(admin.ModelAdmin):
 
 @admin.register(Video_recorder)
 class Video_recorderAdmin(admin.ModelAdmin):
+    list_display = "name", "description", "factory_number"
+    list_display_links = "name",
+    ordering = "-name",
+    search_fields = "name", "factory_number"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "factory_number", "certificate",
+                       "date_manufacture", "receipt_date", "installation_date", "maintenance_interval",
+                       "service_date", "service_date_next", "maintenance_report"
+                       ),
+        }),
+    ]
+
+
+@admin.register(Radio_station)
+class Radio_stationAdmin(admin.ModelAdmin):
     list_display = "name", "description", "factory_number"
     list_display_links = "name",
     ordering = "-name",
