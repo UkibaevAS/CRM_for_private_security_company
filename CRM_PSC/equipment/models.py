@@ -88,6 +88,27 @@ class Rubber_stick(models.Model):
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_rubber_stick'))
 
 
+class Special_spray(models.Model):
+    class Meta:
+        verbose_name = _('Special_spray')
+        verbose_name_plural = _('Special_sprays')
+
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_special_spray'))
+    description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
+                                   verbose_name=_('description__special_spray'))
+    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                        help_text=_("format data: dd.mm.yyyy"),
+                                        verbose_name=_('date_manufacture__special_spray'))
+    expiration_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                       help_text=_("format data: dd.mm.yyyy"),
+                                       verbose_name=_('expiration_date_special_spray'))
+    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
+                                    verbose_name=_('certificate_special_spray'))
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                    help_text=_("format data: dd.mm.yyyy"),
+                                    verbose_name=_('receipt_date_special_spray'))
+
+
 class Armor(models.Model):
     class Meta:
         verbose_name = _('Armor')
