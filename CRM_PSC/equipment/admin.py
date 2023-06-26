@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Uniform, Gun, Armor
+from .models import Uniform, Gun, Armor, Video_recorder, Handcuffs
 
 
 @admin.register(Uniform)
@@ -31,6 +31,19 @@ class GunAdmin(admin.ModelAdmin):
     ]
 
 
+@admin.register(Handcuffs)
+class HandcuffsAdmin(admin.ModelAdmin):
+    list_display = "name", "description"
+    list_display_links = "name",
+    ordering = "-name",
+    search_fields = "name", "factory_number"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "factory_number", "date_manufacture", "receipt_date", "certificate",),
+        }),
+    ]
+
+
 @admin.register(Armor)
 class ArmorAdmin(admin.ModelAdmin):
     list_display = "name", "description", "factory_number", "protection_category"
@@ -41,6 +54,22 @@ class ArmorAdmin(admin.ModelAdmin):
         (None, {
             "fields": ("name", "description", "factory_number", "protection_category",
                        "date_manufacture", "date_purchase", "certificate",
+                       ),
+        }),
+    ]
+
+
+@admin.register(Video_recorder)
+class Video_recorderAdmin(admin.ModelAdmin):
+    list_display = "name", "description", "factory_number"
+    list_display_links = "name",
+    ordering = "-name",
+    search_fields = "name", "factory_number"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "factory_number", "certificate",
+                       "date_manufacture", "receipt_date", "installation_date", "maintenance_interval",
+                       "service_date", "service_date_next", "maintenance_report"
                        ),
         }),
     ]

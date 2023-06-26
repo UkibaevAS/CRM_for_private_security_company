@@ -51,6 +51,23 @@ class Gun(models.Model):
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_gun'))
 
+class Handcuffs(models.Model):
+    class Meta:
+        verbose_name = _('Handcuffs')
+        verbose_name_plural = _('Handcuffs')
+
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_handcuffs'))
+    description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
+                                   verbose_name=_('description_handcuffs'))
+    factory_number = models.CharField(max_length=15, null=True, blank=True, db_index=True,
+                                      verbose_name=_('factory_number_handcuffs'))
+    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture_handcuffs'))
+    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
+                                    verbose_name=_('certificate_handcuffs'))
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_handcuffs'))
+
 
 class Armor(models.Model):
     class Meta:
