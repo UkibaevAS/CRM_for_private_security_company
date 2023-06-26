@@ -1,3 +1,51 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Security_system, Alarm_system, Webcam
+
+
+@admin.register(Security_system)
+class Security_systemAdmin(admin.ModelAdmin):
+    list_display = "name", "description", "factory_number"
+    list_display_links = "name",
+    ordering = "-name",
+    search_fields = "name", "description"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "factory_number", "certificate",
+                       "date_manufacture", "receipt_date", "installation_date", "installation_report",
+                       "maintenance_interval", "service_date", "service_date_next", "maintenance_report"
+                       ),
+        }),
+    ]
+
+
+@admin.register(Alarm_system)
+class Alarm_systemAdmin(admin.ModelAdmin):
+    list_display = "name", "description", "factory_number"
+    list_display_links = "name",
+    ordering = "-name",
+    search_fields = "name", "description"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "factory_number", "certificate",
+                       "date_manufacture", "receipt_date", "installation_date", "installation_report",
+                       "maintenance_interval", "service_date", "service_date_next", "maintenance_report"
+                       ),
+        }),
+    ]
+
+
+@admin.register(Webcam)
+class WebcamAdmin(admin.ModelAdmin):
+    list_display = "name", "description", "factory_number"
+    list_display_links = "name",
+    ordering = "-name",
+    search_fields = "name", "description"
+    fieldsets = [
+        (None, {
+            "fields": ("name", "description", "factory_number", "certificate",
+                       "date_manufacture", "receipt_date", "installation_date", "maintenance_interval",
+                       "service_date", "service_date_next", "maintenance_report"
+                       ),
+        }),
+    ]

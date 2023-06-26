@@ -38,13 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'worker.apps.WorkerConfig',
-    'briefing.apps.BriefingConfig',
+    #'briefing.apps.BriefingConfig',
     'document.apps.DocumentConfig',
-    'uniform.apps.UniformConfig',
-    'armor.apps.ArmorConfig',
-    'gun.apps.GunConfig',
-    "alarm_system.apps.AlarmSystemConfig",
-    "webcam.apps.WebcamConfig",
+    #'uniform.apps.UniformConfig',
+    #'armor.apps.ArmorConfig',
+
+    "security_system.apps.SecuritySystemConfig",
+    "equipment.apps.EquipmentConfig",
 ]
 
 MIDDLEWARE = [

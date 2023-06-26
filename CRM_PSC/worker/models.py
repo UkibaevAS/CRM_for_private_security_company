@@ -1,9 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from briefing.models import Briefing
-from document.models import Document
-from uniform.models import Uniform
+from document.models import Document, Briefing
+from equipment.models import Uniform
 
 
 def foto_directory_path(instance: "Worker", filename: str) -> str:
