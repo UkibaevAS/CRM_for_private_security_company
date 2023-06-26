@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def certificate_directory_path(instance: "Gun", filename: str) -> str:
-    return "certificate/certificate_{pk}/{filename}".format(
+    return "certificate_gun/certificate_{pk}/{filename}".format(
         pk=instance.pk,
         filename=filename,
     )

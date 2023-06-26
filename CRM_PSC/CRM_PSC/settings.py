@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'armor.apps.ArmorConfig',
     'gun.apps.GunConfig',
     "alarm_system.apps.AlarmSystemConfig",
+    "webcam.apps.WebcamConfig",
 ]
 
 MIDDLEWARE = [

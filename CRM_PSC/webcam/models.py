@@ -2,24 +2,24 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-def certificate_directory_path(instance: "Alarm_system", filename: str) -> str:
-    return "certificate_alarm_system/certificate_{pk}/{filename}".format(
+def certificate_directory_path(instance: "Webcam", filename: str) -> str:
+    return "certificate_webcam/certificate_{pk}/{filename}".format(
         pk=instance.pk,
         filename=filename,
     )
 
 
-def maintenance_report_directory_path(instance: "Alarm_system", filename: str) -> str:
-    return "maintenance_report_alarm_system/maintenance_report_{pk}/{filename}".format(
+def maintenance_report_directory_path(instance: "Webcam", filename: str) -> str:
+    return "maintenance_report_webcam/maintenance_report_{pk}/{filename}".format(
         pk=instance.pk,
         filename=filename,
     )
 
 
-class Alarm_system(models.Model):
+class Webcam(models.Model):
     class Meta:
-        verbose_name = _('Alarm_system')
-        verbose_name_plural = _('Alarm_systems')
+        verbose_name = _('Webcam')
+        verbose_name_plural = _('Webcams')
 
     name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
@@ -33,7 +33,7 @@ class Alarm_system(models.Model):
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture'))
+                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date'))
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
