@@ -11,6 +11,13 @@ def certificate_directory_path(instance: Union["Gun", "Armor"], filename: str) -
     )
 
 
+def maintenance_report_directory_path(instance: Union["Video_recorder"], filename: str) -> str:
+    return "maintenance_report_equipment/maintenance_report_{pk}/{filename}".format(
+        pk=instance.pk,
+        filename=filename,
+    )
+
+
 class Uniform(models.Model):
     class Meta:
         verbose_name = _('Uniform')
@@ -64,3 +71,36 @@ class Armor(models.Model):
                                      help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_purchase_armor'))
     certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
                                     verbose_name=_('certificate_armor'))
+
+
+class Video_recorder(models.Model):
+    class Meta:
+        verbose_name = _('Video_recorder')
+        verbose_name_plural = _('Video_recorders')
+
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_video_recorder'))
+    description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
+                                   verbose_name=_('description_video_recorder'))
+    factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+                                      verbose_name=_('factory_number_video_recorder'))
+    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
+                                    verbose_name=_('certificate_video_recorder'))
+    installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                         help_text=_("format data: dd.mm.yyyy"),
+                                         verbose_name=_('installation_date_video_recorder'))
+    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+                                            verbose_name=_('maintenance_interval_video_recorder'))
+    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                        help_text=_("format data: dd.mm.yyyy"),
+                                        verbose_name=_('date_manufacture_video_recorder'))
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                    help_text=_("format data: dd.mm.yyyy"),
+                                    verbose_name=_('receipt_date_video_recorder'))
+    service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                    help_text=_("format data: dd.mm.yyyy"),
+                                    verbose_name=_('service_date_video_recorder'))
+    service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
+                                         help_text=_("format data: dd.mm.yyyy"),
+                                         verbose_name=_('service_date_next_video_recorder'))
+    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
+                                           verbose_name=_('maintenance_report_video_recorder'))
