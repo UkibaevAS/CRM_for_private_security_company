@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'briefing.apps.BriefingConfig',
     'document.apps.DocumentConfig',
     'uniform.apps.UniformConfig',
+    'armor.apps.ArmorConfig',
+    'gun.apps.GunConfig',
+    "alarm_system.apps.AlarmSystemConfig",
 ]
 
 MIDDLEWARE = [

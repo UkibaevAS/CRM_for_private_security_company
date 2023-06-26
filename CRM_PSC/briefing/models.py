@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 def briefing_report_directory_path(instance: "Briefing", filename: str) -> str:
-    return "briefing/briefing_{pk}/copy/{filename}".format(
+    return "briefing/briefing_{pk}/{filename}".format(
         pk=instance.pk,
         filename=filename,
     )

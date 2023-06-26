@@ -7,7 +7,7 @@ from uniform.models import Uniform
 
 
 def foto_directory_path(instance: "Worker", filename: str) -> str:
-    return "foto/foto_{pk}/copy/{filename}".format(
+    return "foto/foto_{pk}/{filename}".format(
         pk=instance.pk,
         filename=filename,
     )
