@@ -21,6 +21,22 @@ def insurance_policy_directory_path(instance: "Vehicle", filename: str) -> str:
 
 
 class Vehicle(models.Model):
+    ENGINE_OIL_VISCOSITY_GRADE_CHOICES = [
+        ("0W-20", "0W-20"),
+        ("0W-30", "0W-30"),
+        ("0W-40", "0W-40"),
+        ("5W-20", "5W-20"),
+        ("5W-30", "5W-30"),
+        ("5W-40", "5W-40"),
+        ("10W-20", "10W-20"),
+        ("10W-30", "10W-30"),
+        ("10W-40", "10W-40"),
+        ("15W-30", "15W-30"),
+        ("15W-40", "15W-40"),
+        ("20W-30", "20W-30"),
+        ("20W-40", "20W-40"),
+    ]
+
     class Meta:
         verbose_name = _('Vehicle')
         verbose_name_plural = _('Vehicles')
@@ -62,6 +78,11 @@ class Vehicle(models.Model):
                                     verbose_name=_('service_date_vehicle'))
     engine_oil = models.CharField(max_length=20, null=True, blank=True, db_index=True,
                                   verbose_name=_('engine_oil'))
-    radio_stations = models.ManyToManyField(Radio_station, related_name="radio_stations_vehicle", verbose_name=_('radio_stations'))
-    video_recorders = models.ManyToManyField(Video_recorder, related_name="video_recorders_vehicle", verbose_name=_('video_recorders'))
+    engine_oil_viscosity = models.CharField(max_length=6, choices=ENGINE_OIL_VISCOSITY_GRADE_CHOICES, default='5W-40',
+                                            db_index=True,
+                                            verbose_name=_('oil_viscosity'))
+    radio_stations = models.ManyToManyField(Radio_station, related_name="radio_stations_vehicle",
+                                            verbose_name=_('radio_stations'))
+    video_recorders = models.ManyToManyField(Video_recorder, related_name="video_recorders_vehicle",
+                                             verbose_name=_('video_recorders'))
     armors = models.ManyToManyField(Armor, related_name="armors_vehicle", verbose_name=_('armors'))

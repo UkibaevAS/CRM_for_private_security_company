@@ -15,7 +15,7 @@ class VehicleAdmin(admin.ModelAdmin):
                        "date_manufacture", "date_purchase", "registration_certificate_number",
                        "reg_certificate_number_copy", "passport_number", "passport_copy", "number_insurance_policy",
                        "date_expiration_insurance", "is_listed_insurance", "mileage", "service_date", "engine_oil",
-                       "radio_stations", "video_recorders", "armors",
+                       "engine_oil_viscosity", "radio_stations", "video_recorders", "armors",
                        ),
         }),
     ]

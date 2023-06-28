@@ -35,7 +35,7 @@ class Post(models.Model):
 
     name = models.CharField(max_length=30, db_index=True, verbose_name=_('name'))
     protection_mode = models.CharField(max_length=15, choices=PROTECT_MODE_POST_CHOICES, default='24/7', db_index=True,
-                                       verbose_name=_('protection_mode'))  # список(круглосуточно, дневной, ночной)
+                                       verbose_name=_('protection_mode'))
     start_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
                                        help_text=_("format data: dd.mm.yyyy"),
                                        verbose_name=_('start_day_shift'))
