@@ -12,7 +12,7 @@ class DocumentAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
             "fields": ("name", "series_and_number", "date_issue", "date_expiration", "who_issued", "place_registration",
-                       "place_of_residence", "driving_license_categories", "document_copy",
+                       "driving_license_categories", "document_copy",
                        ),
         }),
     ]

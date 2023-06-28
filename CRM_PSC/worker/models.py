@@ -21,8 +21,7 @@ class Worker(models.Model):
     second_name = models.CharField(max_length=50, db_index=True, verbose_name=_('second_name'))
     middle_name = models.CharField(max_length=30, db_index=True, verbose_name=_('middle_name'))
     foto = models.ImageField(null=True, blank=True, upload_to=foto_directory_path, verbose_name=_('foto'))
-    phone = models.CharField(max_length=12, db_index=True, help_text=_("format data: +70001112233"),
-                             verbose_name=_('phone'))
+    phone = models.PositiveBigIntegerField(default=0, null=True, blank=True, db_index=True, help_text=_("format phone: 83517772233"), verbose_name=_('phone'))
     address = models.CharField(max_length=150, null=False, blank=False, db_index=True, verbose_name=_('address'))
     date_birth = models.CharField(max_length=10, null=False, blank=False, db_index=True,
                                   help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_birth'))

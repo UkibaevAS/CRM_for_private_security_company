@@ -21,20 +21,20 @@ class Document(models.Model):
         verbose_name = _('Document')
         verbose_name_plural = _('Documents')
 
-    name = models.CharField(max_length=30, db_index=True, verbose_name=_('name_document'))
+    name = models.CharField(max_length=30, db_index=True, verbose_name=_('name_document')) # выбор из возможных вариантов (список)
     series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True,
                                          help_text=_("format: series number"),
                                          verbose_name=_('series_and_number_document'))
     date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True,
                                   help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_issue_document'))
-    date_expiration = models.CharField(max_length=10, null=False, blank=False, db_index=True,
+    date_expiration = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                        help_text=_("format data: dd.mm.yyyy"),
                                        verbose_name=_('date_expiration_document'))
-    who_issued = models.CharField(max_length=50, null=False, blank=False, db_index=True,
+    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True,
                                   verbose_name=_('who_issued_document'))
-    place_registration = models.CharField(max_length=150, null=False, blank=False, db_index=True,
+    place_registration = models.CharField(max_length=150, null=True, blank=True, db_index=True,
                                           verbose_name=_('place_registration_document'))
-    driving_license_categories = models.CharField(max_length=150, null=False, blank=True, db_index=True,
+    driving_license_categories = models.CharField(max_length=150, null=True, blank=True, db_index=True,
                                                   verbose_name=_('driving_license_categories_document'))
     document_copy = models.ImageField(null=True, blank=True, upload_to=document_directory_path,
                                       verbose_name=_('document_copy'))
