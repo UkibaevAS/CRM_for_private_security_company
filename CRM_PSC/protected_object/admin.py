@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Protected_object, Organization
+from .models import Post, Protected_object, Client
 
 
 @admin.register(Post)
@@ -11,9 +11,11 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = "name", "phone"
     fieldsets = [
         (None, {
-            "fields": ("name", "security_time", "start_day_shift", "start_night_shift", "phone", "number_per_day",
-                       "number_per_night", "armors", "guns", "radio_stations", "webcams", "alarm_systems", "vehicles",
-                       ),
+            "fields": (
+                "name", "protection_mode", "start_day_shift", "start_day_shift_free_day", "start_night_shift", "phone",
+                "number_per_day", "number_per_night", "armors", "guns", "radio_stations", "webcams", "alarm_systems",
+                "vehicles",
+            ),
         }),
     ]
 
@@ -27,14 +29,14 @@ class Protected_objectAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
             "fields": (
-                "name", "address", "curator", "security_method", "posts", "foto", "security_systems", "organizations",
+                "name", "address", "curator", "security_method", "posts", "foto", "security_systems", "clients",
             ),
         }),
     ]
 
 
-@admin.register(Organization)
-class OrganizationAdmin(admin.ModelAdmin):
+@admin.register(Client)
+class ClientAdmin(admin.ModelAdmin):
     list_display = "name", "phone", "address",
     list_display_links = "name",
     ordering = "-name", "address",

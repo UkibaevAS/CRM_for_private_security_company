@@ -22,16 +22,26 @@ def security_contracts_directory_path(instance: "Protected_object", filename: st
 
 
 class Post(models.Model):
+    PROTECT_MODE_POST_CHOICES = [
+        ("round-the-clock", "24/7"),
+        ('daytime', _("Daytime")),
+        ("nightly", _("Nightly")),
+        ("mixed", _("Mixed")),
+        ]
+
     class Meta:
         verbose_name = _('Post')
         verbose_name_plural = _('Posts')
 
     name = models.CharField(max_length=30, db_index=True, verbose_name=_('name'))
-    security_time = models.CharField(max_length=20, db_index=True,
-                                     verbose_name=_('security_time'))  # список(круглосуточно, дневной, ночной)
+    protection_mode = models.CharField(max_length=15, choices=PROTECT_MODE_POST_CHOICES, default='24/7', db_index=True,
+                                       verbose_name=_('protection_mode'))  # список(круглосуточно, дневной, ночной)
     start_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
                                        help_text=_("format data: dd.mm.yyyy"),
                                        verbose_name=_('start_day_shift'))
+    start_day_shift_free_day = models.CharField(max_length=5, null=True, blank=True, db_index=True,
+                                       help_text=_("format data: dd.mm.yyyy"),
+                                       verbose_name=_('start_day_shift_free_day'))
     start_night_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('start_night_shift'))
@@ -51,10 +61,10 @@ class Post(models.Model):
     vehicles = models.ManyToManyField(Vehicle, related_name="vehicles_post", verbose_name=_('vehicles'))
 
 
-class Organization(models.Model):
+class Client(models.Model):
     class Meta:
-        verbose_name = _('Organization')
-        verbose_name_plural = _('Organizations')
+        verbose_name = _('Client')
+        verbose_name_plural = _('Clients')
 
     name = models.CharField(max_length=50, db_index=True, verbose_name=_('name'))
     address = models.CharField(max_length=100, db_index=True, verbose_name=_('address'))
@@ -90,4 +100,4 @@ class Protected_object(models.Model):
                              verbose_name=_('foto'))
     security_systems = models.ManyToManyField(Security_system, related_name="security_systems",
                                               verbose_name=_('security_systems'))
-    organizations = models.ManyToManyField(Organization, related_name="organizations", verbose_name=_('organizations'))
+    clients = models.ManyToManyField(Client, related_name="organizations", verbose_name=_('organizations'))
