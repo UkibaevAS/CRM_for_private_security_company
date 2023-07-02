@@ -18,32 +18,28 @@ class DocumentForm(forms.ModelForm):
 class DocumentAdmin(admin.ModelAdmin):
     form = DocumentForm
 
-    # def save_model(self, request, obj, form, change):
-    #     pdf_file = form.cleaned_data.get("pdf_file", None)
-    #     if pdf_file:
-    #         obj.document_copy.save(pdf_file.name, pdf_file)
-    #     obj.save()
-def save_file(instance, file):
-    # Получение расширения файла
-    file_extension = os.path.splitext(file.name)[1]
+    def save_file(instance, file):
+        # Получение расширения файла
+        file_extension = os.path.splitext(file.name)[1]
 
-    # Создание пути сохранения файла
-    file_path = "document/document_{pk}/{filename}".format(
-        pk=instance.pk,
-        extension=file_extension
-    )
+        # Создание пути сохранения файла
+        file_path = "Document/document/{pk}/{filename}".format(
+            pk=instance.pk,
+            extension=file_extension
+        )
 
-    # Открытие файла и сохранение его контента в атрибут document_copy
-    with open(file_path, "wb") as destination:
-        for chunk in file.chunks():
-            destination.write(chunk)
+        # Открытие файла и сохранение его контента в атрибут document_copy
+        with open(file_path, "wb") as destination:
+            for chunk in file.chunks():
+                destination.write(chunk)
 
-    # Сохранение пути файла в атрибут document_copy
-    instance.document_copy = file_path
-    instance.save()
+        # Сохранение пути файла в атрибут document_copy
+        instance.document_copy = file_path
+        instance.save()
+
 
 class BriefingForm(forms.ModelForm):
-    pdf_file = forms.FileField(label="Briefing_report_PDF")
+    file = forms.FileField(label="Briefing_copy")
 
     class Meta:
         model = Briefing
@@ -54,8 +50,14 @@ class BriefingForm(forms.ModelForm):
 class BriefingAdmin(admin.ModelAdmin):
     form = BriefingForm
 
-    def save_model(self, request, obj, form, change):
-        pdf_file = form.cleaned_data.get("pdf_file", None)
-        if pdf_file:
-            obj.document_copy.save(pdf_file.name, pdf_file)
-        obj.save()
+    def save_file(instance, file):
+        file_extension = os.path.splitext(file.name)[1]
+
+        file_path = "Document/briefing/{pk}/{filename}".format(pk=instance.pk, extension=file_extension)
+
+        with open(file_path, "wb") as destination:
+            for chunk in file.chunks():
+                destination.write(chunk)
+
+        instance.briefing_copy = file_path
+        instance.save()

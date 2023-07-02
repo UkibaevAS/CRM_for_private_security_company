@@ -1,21 +1,7 @@
-from typing import Union
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-
-def certificate_directory_path(instance: Union["Gun", "Armor"], filename: str) -> str:
-    return "certificate_equipment/certificate_{pk}/{filename}".format(
-        pk=instance.pk,
-        filename=filename,
-    )
-
-
-def maintenance_report_directory_path(instance: Union["Video_recorder"], filename: str) -> str:
-    return "maintenance_report_equipment/maintenance_report_{pk}/{filename}".format(
-        pk=instance.pk,
-        filename=filename,
-    )
+from config.models import Affiliated_company
 
 
 class Uniform(models.Model):
@@ -27,6 +13,7 @@ class Uniform(models.Model):
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
                                    verbose_name=_('description_uniform'))
     size = models.SmallIntegerField(default=0, null=True, blank=True, db_index=True, verbose_name=_('size_uniform'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
 
     def __str__(self):
         return f"{_('Uniform')}(pk={self.pk}, name={self.name!r})"
@@ -42,14 +29,13 @@ class Gun(models.Model):
                                    verbose_name=_('description_gun'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                       verbose_name=_('factory_number_gun'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture_gun'))
     date_test_shoot = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_test_shoot'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_gun'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_gun'))
 
 
 class Handcuffs(models.Model):
@@ -62,13 +48,12 @@ class Handcuffs(models.Model):
                                    verbose_name=_('description_handcuffs'))
     factory_number = models.CharField(max_length=15, null=True, blank=True, db_index=True,
                                       verbose_name=_('factory_number_handcuffs'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
                                         verbose_name=_('date_manufacture_handcuffs'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_handcuffs'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_handcuffs'))
 
 
 class Rubber_stick(models.Model):
@@ -79,13 +64,13 @@ class Rubber_stick(models.Model):
     name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_rubber_stick'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
                                    verbose_name=_('description_rubber_stick'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
                                         verbose_name=_('date_manufacture_rubber_stick'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_rubber_stick'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_rubber_stick'))
+
 
 class Special_spray(models.Model):
     class Meta:
@@ -95,6 +80,7 @@ class Special_spray(models.Model):
     name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_special_spray'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
                                    verbose_name=_('description__special_spray'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
                                         verbose_name=_('date_manufacture__special_spray'))
@@ -104,8 +90,7 @@ class Special_spray(models.Model):
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"),
                                     verbose_name=_('receipt_date_special_spray'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_special_spray'))
+
 
 class Armor(models.Model):
     class Meta:
@@ -117,6 +102,7 @@ class Armor(models.Model):
                                    verbose_name=_('description_armor'))
     factory_number = models.CharField(max_length=15, null=True, blank=True, db_index=True,
                                       verbose_name=_('factory_number_armor'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
                                         verbose_name=_('date_manufacture_armor'))
@@ -124,8 +110,6 @@ class Armor(models.Model):
                                                    verbose_name=_('protection_category_armor'))
     date_purchase = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                      help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_purchase_armor'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_armor'))
 
 
 class Video_recorder(models.Model):
@@ -138,10 +122,12 @@ class Video_recorder(models.Model):
                                    verbose_name=_('description_video_recorder'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                       verbose_name=_('factory_number_video_recorder'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('installation_date_video_recorder'))
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+                                            help_text=_("number of months: XX"),
                                             verbose_name=_('maintenance_interval_video_recorder'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
@@ -155,10 +141,6 @@ class Video_recorder(models.Model):
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('service_date_next_video_recorder'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_video_recorder'))
-    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
-                                           verbose_name=_('maintenance_report_video_recorder'))
 
 
 class Radio_station(models.Model):
@@ -171,10 +153,12 @@ class Radio_station(models.Model):
                                    verbose_name=_('description_radio_station'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                       verbose_name=_('factory_number_radio_station'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('installation_date_radio_station'))
-    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+    maintenance_interval = models.CharField(max_length=15, null=True, blank=True, db_index=True,
+                                            help_text=_("number of months: XX"),
                                             verbose_name=_('maintenance_interval_radio_station'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
@@ -188,7 +172,3 @@ class Radio_station(models.Model):
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('service_date_next_radio_station'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate_radio_station'))
-    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
-                                           verbose_name=_('maintenance_report_radio_station'))

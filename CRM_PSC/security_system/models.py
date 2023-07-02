@@ -1,30 +1,7 @@
-from typing import Union
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-
-def certificate_directory_path(instance: Union["Security_system", "Alarm_system", "Webcam"], filename: str) -> str:
-    return "certificate_security_system/certificate_{pk}/{filename}".format(
-        pk=instance.pk,
-        filename=filename,
-    )
-
-
-def maintenance_report_directory_path(instance: Union["Security_system", "Alarm_system", "Webcam"],
-                                      filename: str) -> str:
-    return "maintenance_report_security_system/maintenance_report_{pk}/{filename}".format(
-        pk=instance.pk,
-        filename=filename,
-    )
-
-
-def installation_report_directory_path(instance: Union["Security_system", "Alarm_system", "Webcam"],
-                                       filename: str) -> str:
-    return "installation_report_security_system/installation_report_{pk}/{filename}".format(
-        pk=instance.pk,
-        filename=filename,
-    )
+from config.models import Affiliated_company
 
 
 class Security_system(models.Model):
@@ -37,13 +14,10 @@ class Security_system(models.Model):
                                    verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                       verbose_name=_('factory_number'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('installation_date'))
-    installation_report = models.ImageField(null=True, blank=True, upload_to=installation_report_directory_path,
-                                            verbose_name=_('installation_report'))
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
@@ -58,8 +32,6 @@ class Security_system(models.Model):
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('service_date'))
-    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
-                                           verbose_name=_('maintenance_report'))
 
 
 class Alarm_system(models.Model):
@@ -72,13 +44,10 @@ class Alarm_system(models.Model):
                                    verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                       verbose_name=_('factory_number'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('installation_date'))
-    installation_report = models.ImageField(null=True, blank=True, upload_to=installation_report_directory_path,
-                                            verbose_name=_('installation_report'))
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
@@ -91,8 +60,6 @@ class Alarm_system(models.Model):
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('service_date_next'))
-    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
-                                           verbose_name=_('maintenance_report'))
 
 
 class Webcam(models.Model):
@@ -105,13 +72,10 @@ class Webcam(models.Model):
                                    verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                       verbose_name=_('factory_number'))
-    certificate = models.ImageField(null=True, blank=True, upload_to=certificate_directory_path,
-                                    verbose_name=_('certificate'))
+    owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('installation_date'))
-    installation_report = models.ImageField(null=True, blank=True, upload_to=installation_report_directory_path,
-                                            verbose_name=_('installation_report'))
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
@@ -124,5 +88,4 @@ class Webcam(models.Model):
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
                                          verbose_name=_('service_date_next'))
-    maintenance_report = models.ImageField(null=True, blank=True, upload_to=maintenance_report_directory_path,
-                                           verbose_name=_('maintenance_report'))
+

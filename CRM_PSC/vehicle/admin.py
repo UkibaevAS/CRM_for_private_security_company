@@ -11,10 +11,9 @@ class VehicleAdmin(admin.ModelAdmin):
     search_fields = "name", "license_plate"
     fieldsets = [
         (None, {
-            "fields": ("name", "branding", "VIN_number", "license_plate",
-                       "date_manufacture", "date_purchase", "registration_certificate_number",
-                       "reg_certificate_number_copy", "passport_number", "passport_copy", "number_insurance_policy",
-                       "date_expiration_insurance", "is_listed_insurance", "mileage", "service_date", "engine_oil",
+            "fields": ("name", "branding", "VIN_number", "license_plate", "date_manufacture", "date_purchase", "owner",
+                       "registration_certificate", "passport_copy", "insurance_policy_limit", "is_listed_insurance",
+                       "date_expiration_insurance", "insurance_policy_copy", "mileage", "service_date", "engine_oil",
                        "engine_oil_viscosity", "radio_stations", "video_recorders", "armors",
                        ),
         }),

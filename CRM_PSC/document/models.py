@@ -2,14 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-
-def briefing_report_directory_path(instance: "Briefing", filename: str) -> str:
-    return "briefing/briefing_{pk}/{filename}".format(
-        pk=instance.pk,
-        filename=filename,
-    )
-
-
 class Document(models.Model):
     class Meta:
         verbose_name = _('Document')
@@ -32,7 +24,6 @@ class Document(models.Model):
     driving_license_categories = models.CharField(max_length=50, null=True, blank=True, db_index=True,
                                                   verbose_name=_('driving_license_categories_document'))
 
-
     def __str__(self):
         return f"{_('Document')}(pk={self.pk}, name={self.name!r})"
 
@@ -46,8 +37,6 @@ class Briefing(models.Model):
                                        verbose_name=_('committee_chair'))
     data_next_briefing = models.CharField(max_length=10, null=False, blank=False, db_index=True,
                                           help_text=_("format data: dd.mm.yyyy"), verbose_name=_('data_next_briefing'))
-    briefing_report = models.ImageField(null=True, blank=True, upload_to=briefing_report_directory_path,
-                                        verbose_name=_('briefing_report_image'))
 
     def __str__(self):
         return f"{_('Briefing')}(pk={self.pk}, name={self.name!r})"
