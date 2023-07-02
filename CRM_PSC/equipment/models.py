@@ -24,18 +24,18 @@ class Gun(models.Model):
         verbose_name = _('Gun')
         verbose_name_plural = _('Guns')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_gun'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
-                                   verbose_name=_('description_gun'))
+                                   verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
-                                      verbose_name=_('factory_number_gun'))
+                                      verbose_name=_('factory_number'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture_gun'))
+                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_manufacture'))
     date_test_shoot = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                        help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_test_shoot'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_gun'))
+                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date'))
 
 
 class Handcuffs(models.Model):
@@ -43,17 +43,17 @@ class Handcuffs(models.Model):
         verbose_name = _('Handcuffs')
         verbose_name_plural = _('Handcuffs')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_handcuffs'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
-                                   verbose_name=_('description_handcuffs'))
+                                   verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=True, blank=True, db_index=True,
-                                      verbose_name=_('factory_number_handcuffs'))
+                                      verbose_name=_('factory_number'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
-                                        verbose_name=_('date_manufacture_handcuffs'))
+                                        verbose_name=_('date_manufacture'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_handcuffs'))
+                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date'))
 
 
 class Rubber_stick(models.Model):
@@ -61,15 +61,15 @@ class Rubber_stick(models.Model):
         verbose_name = _('Rubber_stick')
         verbose_name_plural = _('Rubber_sticks')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_rubber_stick'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
-                                   verbose_name=_('description_rubber_stick'))
+                                   verbose_name=_('description'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
-                                        verbose_name=_('date_manufacture_rubber_stick'))
+                                        verbose_name=_('date_manufacture'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date_rubber_stick'))
+                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('receipt_date'))
 
 
 class Special_spray(models.Model):
@@ -77,19 +77,19 @@ class Special_spray(models.Model):
         verbose_name = _('Special_spray')
         verbose_name_plural = _('Special_sprays')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_special_spray'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
-                                   verbose_name=_('description__special_spray'))
+                                   verbose_name=_('description'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
-                                        verbose_name=_('date_manufacture__special_spray'))
+                                        verbose_name=_('date_manufacture'))
     expiration_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                        help_text=_("format data: dd.mm.yyyy"),
-                                       verbose_name=_('expiration_date_special_spray'))
+                                       verbose_name=_('expiration_date'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"),
-                                    verbose_name=_('receipt_date_special_spray'))
+                                    verbose_name=_('receipt_date'))
 
 
 class Armor(models.Model):
@@ -97,19 +97,19 @@ class Armor(models.Model):
         verbose_name = _('Armor')
         verbose_name_plural = _('Armors')
 
-    name = models.CharField(max_length=15, db_index=True, verbose_name=_('name_armor'))
+    name = models.CharField(max_length=15, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=150, null=True, blank=True, db_index=True,
-                                   verbose_name=_('description_armor'))
+                                   verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=True, blank=True, db_index=True,
-                                      verbose_name=_('factory_number_armor'))
+                                      verbose_name=_('factory_number'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
-                                        verbose_name=_('date_manufacture_armor'))
+                                        verbose_name=_('date_manufacture'))
     protection_category = models.SmallIntegerField(default=0, null=True, blank=True, db_index=True,
-                                                   verbose_name=_('protection_category_armor'))
+                                                   verbose_name=_('protection_category'))
     date_purchase = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_purchase_armor'))
+                                     help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_purchase'))
 
 
 class Video_recorder(models.Model):
@@ -117,30 +117,30 @@ class Video_recorder(models.Model):
         verbose_name = _('Video_recorder')
         verbose_name_plural = _('Video_recorders')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_video_recorder'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
-                                   verbose_name=_('description_video_recorder'))
+                                   verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
-                                      verbose_name=_('factory_number_video_recorder'))
+                                      verbose_name=_('factory_number'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
-                                         verbose_name=_('installation_date_video_recorder'))
+                                         verbose_name=_('installation_date'))
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             help_text=_("number of months: XX"),
-                                            verbose_name=_('maintenance_interval_video_recorder'))
+                                            verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
-                                        verbose_name=_('date_manufacture_video_recorder'))
+                                        verbose_name=_('date_manufacture'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"),
-                                    verbose_name=_('receipt_date_video_recorder'))
+                                    verbose_name=_('receipt_date'))
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"),
-                                    verbose_name=_('service_date_video_recorder'))
+                                    verbose_name=_('service_date'))
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
-                                         verbose_name=_('service_date_next_video_recorder'))
+                                         verbose_name=_('service_date_next'))
 
 
 class Radio_station(models.Model):
@@ -148,27 +148,27 @@ class Radio_station(models.Model):
         verbose_name = _('Radio_station')
         verbose_name_plural = _('Radio_stations')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_radio_station'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
-                                   verbose_name=_('description_radio_station'))
+                                   verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
-                                      verbose_name=_('factory_number_radio_station'))
+                                      verbose_name=_('factory_number'))
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
     installation_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
-                                         verbose_name=_('installation_date_radio_station'))
+                                         verbose_name=_('installation_date'))
     maintenance_interval = models.CharField(max_length=15, null=True, blank=True, db_index=True,
                                             help_text=_("number of months: XX"),
-                                            verbose_name=_('maintenance_interval_radio_station'))
+                                            verbose_name=_('maintenance_interval'))
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text=_("format data: dd.mm.yyyy"),
-                                        verbose_name=_('date_manufacture_radio_station'))
+                                        verbose_name=_('date_manufacture'))
     receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"),
-                                    verbose_name=_('receipt_date_radio_station'))
+                                    verbose_name=_('receipt_date'))
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text=_("format data: dd.mm.yyyy"),
-                                    verbose_name=_('service_date_radio_station'))
+                                    verbose_name=_('service_date'))
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text=_("format data: dd.mm.yyyy"),
-                                         verbose_name=_('service_date_next_radio_station'))
+                                         verbose_name=_('service_date_next'))

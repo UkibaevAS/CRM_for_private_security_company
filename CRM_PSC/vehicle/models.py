@@ -33,7 +33,7 @@ class Vehicle(models.Model):
         verbose_name = _('Vehicle')
         verbose_name_plural = _('Vehicles')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_vehicle'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     branding = models.BooleanField(default=False)
     VIN_number = models.CharField(max_length=20, null=False, blank=False, db_index=True,
                                   verbose_name=_('VIN_number'))
@@ -49,7 +49,7 @@ class Vehicle(models.Model):
     registration_certificate = models.ManyToManyField(Document, related_name="registration_certificate",
                                                       verbose_name=_('registration_certificate'))
     passport_copy = models.ManyToManyField(Document, related_name="passport_copy_vehicle",
-                                           verbose_name=_('passport_vehicle'))
+                                           verbose_name=_('passport'))
     insurance_policy_limit = models.CharField(max_length=18, choices=INSURANCE_LIMIT_CHOISES,
                                               default='without limitation', db_index=True,
                                               verbose_name=_('policy_limit'))
@@ -62,7 +62,7 @@ class Vehicle(models.Model):
                                                    verbose_name=_('insurance_policy'))
     mileage = models.PositiveIntegerField(default=0, null=True, blank=True, db_index=True, verbose_name=_('mileage'))
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('service_date_vehicle'))
+                                    help_text=_("format data: dd.mm.yyyy"), verbose_name=_('service_date'))
     engine_oil = models.CharField(max_length=20, null=True, blank=True, db_index=True,
                                   verbose_name=_('engine_oil'))
     engine_oil_viscosity = models.CharField(max_length=6, choices=ENGINE_OIL_VISCOSITY_GRADE_CHOICES, default='5W-40',

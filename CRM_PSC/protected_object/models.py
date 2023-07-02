@@ -102,8 +102,6 @@ class Protected_object(models.Model):
     name = models.CharField(max_length=50, db_index=True, verbose_name=_('name'))
     address = models.CharField(max_length=100, db_index=True, verbose_name=_('address'))
     curator = models.ForeignKey(Worker, on_delete=models.PROTECT)
-    security_method = models.CharField(max_length=50, db_index=True,
-                                       verbose_name=_('security_method'))  # выбор из списка
     posts = models.ManyToManyField(Post, related_name="posts", verbose_name=_('posts'))
     security_systems = models.ManyToManyField(Security_system, related_name="security_systems",
                                               verbose_name=_('security_systems'))

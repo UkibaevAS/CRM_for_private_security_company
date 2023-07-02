@@ -6,10 +6,6 @@ from document.models import Document, Briefing
 from equipment.models import Uniform
 
 
-
-
-
-
 class Worker(models.Model):
     class Meta:
         verbose_name = _('Worker')
@@ -18,7 +14,8 @@ class Worker(models.Model):
     first_name = models.CharField(max_length=30, db_index=True, verbose_name=_('first_name'))
     second_name = models.CharField(max_length=50, db_index=True, verbose_name=_('second_name'))
     middle_name = models.CharField(max_length=30, db_index=True, verbose_name=_('middle_name'))
-    phone = models.PositiveBigIntegerField(default=0, null=True, blank=True, db_index=True, help_text=_("format phone: 83517772233"), verbose_name=_('phone'))
+    phone = models.PositiveBigIntegerField(default=0, null=True, blank=True, db_index=True,
+                                           help_text=_("format phone: 83517772233"), verbose_name=_('phone'))
     address = models.CharField(max_length=150, null=False, blank=False, db_index=True, verbose_name=_('address'))
     date_birth = models.CharField(max_length=10, null=False, blank=False, db_index=True,
                                   help_text=_("format data: dd.mm.yyyy"), verbose_name=_('date_birth'))

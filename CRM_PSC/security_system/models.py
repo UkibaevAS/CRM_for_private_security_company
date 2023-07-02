@@ -67,7 +67,7 @@ class Webcam(models.Model):
         verbose_name = _('Webcam')
         verbose_name_plural = _('Webcams')
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name_webcam'))
+    name = models.CharField(max_length=20, db_index=True, verbose_name=_('name'))
     description = models.CharField(max_length=100, null=False, blank=False, db_index=True,
                                    verbose_name=_('description'))
     factory_number = models.CharField(max_length=15, null=False, blank=False, db_index=True,
