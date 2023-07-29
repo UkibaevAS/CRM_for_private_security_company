@@ -16,7 +16,8 @@ class Uniform(models.Model):
     owner = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f"{_('Uniform')}(pk={self.pk}, name={self.name!r})"
+        return f"{self.name!r}, {_('size')} - {self.size}"
+        # return f"{_('Uniform')}(pk={self.pk}, name={self.name!r})"
 
 
 class Gun(models.Model):

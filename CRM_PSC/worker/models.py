@@ -5,6 +5,11 @@ from config.models import Affiliated_company, Department, Position
 from document.models import Document, Briefing
 from equipment.models import Uniform
 
+def photo_directory_path(instance: "Worker", filename: str) -> str:
+    return "Worker/photo/{pk}/{filename}".format(
+        pk=instance.pk,
+        filename=filename,
+    )
 
 class Worker(models.Model):
     class Meta:
@@ -12,8 +17,9 @@ class Worker(models.Model):
         verbose_name_plural = _('Workers')
 
     first_name = models.CharField(max_length=30, db_index=True, verbose_name=_('first_name'))
-    second_name = models.CharField(max_length=50, db_index=True, verbose_name=_('second_name'))
     middle_name = models.CharField(max_length=30, db_index=True, verbose_name=_('middle_name'))
+    second_name = models.CharField(max_length=50, db_index=True, verbose_name=_('second_name'))
+    photo = models.ImageField(null=True, blank=True, upload_to=photo_directory_path)
     phone = models.PositiveBigIntegerField(default=0, null=True, blank=True, db_index=True,
                                            help_text=_("format phone: 83517772233"), verbose_name=_('phone'))
     address = models.CharField(max_length=150, null=False, blank=False, db_index=True, verbose_name=_('address'))
@@ -35,3 +41,4 @@ class Worker(models.Model):
     documents = models.ManyToManyField(Document, related_name="documents", verbose_name=_('documents'))
     uniforms = models.ManyToManyField(Uniform, related_name="uniforms", verbose_name=_('uniforms'))
     archived = models.BooleanField(default=False, verbose_name=_('archived'))
+
