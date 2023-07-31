@@ -1,6 +1,40 @@
 from django.db import models
 
 from config.models import Affiliated_company
+from typing import Union
+
+def copy_directory_path(instance: Union[
+                                        "Uniform",
+                                        "Gun",
+                                        "Handcuffs",
+                                        "Rubber_stick",
+                                        "Special_spray",
+                                        "Armor",
+                                        "Video_recorder",
+                                        "Radio_station"
+                                        ],
+                        filename: str) -> str:
+
+    if isinstance(instance, Uniform):
+        document_title = "uniform"
+    elif isinstance(instance, Gun):
+        document_title = "gun"
+    elif isinstance(instance, Handcuffs):
+        document_title = "handcuffs"
+    elif isinstance(instance, Rubber_stick):
+        document_title = "rubber_stick"
+    elif isinstance(instance, Special_spray):
+        document_title = "special_spray"
+    elif isinstance(instance, Armor):
+        document_title = "armor"
+    elif isinstance(instance, Video_recorder):
+        document_title = "video_recorder"
+    else:
+        document_title = "radio_station"
+
+    return "Document/" + document_title + "/{filename}".format(
+        filename=filename,
+    )
 
 
 class Uniform(models.Model):
@@ -10,10 +44,9 @@ class Uniform(models.Model):
 
     name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
-    size = models.SmallIntegerField(default=0, db_index=True, verbose_name='Размер')
+    size = models.SmallIntegerField(default=0, verbose_name='Размер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Числится на балансе')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
 
     def __str__(self):
         return f"{self.name}, 'size' - {self.size}"
@@ -33,8 +66,8 @@ class Gun(models.Model):
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
     date_test_shoot = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                        help_text="Формат: dd.mm.yyyy", verbose_name='Дата контрольного отстрела')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
 
 class Handcuffs(models.Model):
@@ -48,9 +81,7 @@ class Handcuffs(models.Model):
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Числится на балансе')
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
-
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
 
 class Rubber_stick(models.Model):
     class Meta:
@@ -62,8 +93,7 @@ class Rubber_stick(models.Model):
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Числится на балансе')
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
 
 
 class Special_spray(models.Model):
@@ -78,8 +108,7 @@ class Special_spray(models.Model):
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
     expiration_date = models.CharField(max_length=10, db_index=True, help_text="Формат: dd.mm.yyyy",
                                        verbose_name='Срок годности')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
 
 
 class Armor(models.Model):
@@ -94,8 +123,7 @@ class Armor(models.Model):
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
     protection_category = models.SmallIntegerField(default=0, null=True, blank=True, verbose_name='Класс защиты')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
 
 
 class Video_recorder(models.Model):
@@ -113,8 +141,7 @@ class Video_recorder(models.Model):
                                             verbose_name='Периодичность ТО')
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
@@ -136,8 +163,7 @@ class Radio_station(models.Model):
                                             verbose_name='Периодичность ТО')
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
+    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
     service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                     help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
