@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
 from config.models import Affiliated_company
 
@@ -101,8 +100,8 @@ class Armor(models.Model):
 
 class Video_recorder(models.Model):
     class Meta:
-        verbose_name = 'Video_recorder'
-        verbose_name_plural = 'Video_recorders'
+        verbose_name = 'Видеорегистратор'
+        verbose_name_plural = 'Видеорегистраторы'
 
     name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
