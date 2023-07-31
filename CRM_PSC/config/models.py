@@ -23,7 +23,8 @@ class Affiliated_company(models.Model):
                                                           db_index=True, help_text=_("format phone: 83517772233"),
                                                           verbose_name=_('phone_contact_person'))
 
-
+    def __str__(self):
+        return f"{self.name!r}"
 class Department(models.Model):
     class Meta:
         verbose_name = _('Department')
@@ -32,6 +33,9 @@ class Department(models.Model):
     name = models.CharField(max_length=50, db_index=True, verbose_name=_('name'))
     manager = models.CharField(max_length=75, db_index=True, verbose_name=_('manager'))
 
+    def __str__(self):
+        return f"{self.name!r}"
+
 
 class Position(models.Model):
     class Meta:
@@ -39,3 +43,6 @@ class Position(models.Model):
         verbose_name_plural = _('Positions')
 
     name = models.CharField(max_length=50, db_index=True, verbose_name=_('name'))
+
+    def __str__(self):
+        return f"{self.name!r}"

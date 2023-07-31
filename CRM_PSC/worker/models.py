@@ -38,7 +38,10 @@ class Worker(models.Model):
                                              verbose_name=_('size_clothing'))
     size_hat = models.SmallIntegerField(default=0, null=True, blank=True, db_index=True, verbose_name=_('size_hat'))
     briefings = models.ManyToManyField(Briefing, related_name="briefings", verbose_name=_('briefings'))
-    documents = models.ManyToManyField(Document, related_name="documents", verbose_name=_('documents'))
+    documents = models.ForeignKey(Document, related_name="documents", verbose_name=_('documents'), on_delete=models.PROTECT)
+    # documents = models.ManyToManyField(Document, related_name="documents", verbose_name=_('documents'))
     uniforms = models.ManyToManyField(Uniform, related_name="uniforms", verbose_name=_('uniforms'))
     archived = models.BooleanField(default=False, verbose_name=_('archived'))
 
+    def __str__(self):
+        return f"{self.second_name} {self.first_name} {self.middle_name}"
