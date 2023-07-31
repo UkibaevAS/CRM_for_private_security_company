@@ -32,10 +32,20 @@ def copy_directory_path(instance: Union[
     else:
         document_title = "radio_station"
 
-    return "Document/" + document_title + "/{filename}".format(
+    return "Equipment/" + document_title + "/certificate/{filename}".format(
         filename=filename,
     )
 
+
+
+def copy_report_directory_path(instance: Union["Video_recorder", "Radio_station"], filename: str) -> str:
+    if isinstance(instance, Video_recorder):
+        document_title = "video_recorder"
+    else:
+        document_title = "radio_station"
+    return "Equipment/" + document_title + "/maintenance_report/{filename}".format(
+        filename=filename,
+    )
 
 class Uniform(models.Model):
     class Meta:
@@ -67,7 +77,7 @@ class Gun(models.Model):
     date_test_shoot = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                        help_text="Формат: dd.mm.yyyy", verbose_name='Дата контрольного отстрела')
     receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
-    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
 
 class Handcuffs(models.Model):
@@ -82,7 +92,7 @@ class Handcuffs(models.Model):
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
     receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
-
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 class Rubber_stick(models.Model):
     class Meta:
         verbose_name = 'Палка резиновая'
@@ -94,7 +104,7 @@ class Rubber_stick(models.Model):
     date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
     receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
-
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
 class Special_spray(models.Model):
     class Meta:
@@ -109,7 +119,7 @@ class Special_spray(models.Model):
     expiration_date = models.CharField(max_length=10, db_index=True, help_text="Формат: dd.mm.yyyy",
                                        verbose_name='Срок годности')
     receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
-
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
 class Armor(models.Model):
     class Meta:
@@ -124,7 +134,7 @@ class Armor(models.Model):
                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
     protection_category = models.SmallIntegerField(default=0, null=True, blank=True, verbose_name='Класс защиты')
     receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy", verbose_name='Дата поступления')
-
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
 class Video_recorder(models.Model):
     class Meta:
@@ -146,7 +156,8 @@ class Video_recorder(models.Model):
                                     help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text="Формат: dd.mm.yyyy", verbose_name='Дата следующего ТО')
-
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
+    maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_report_directory_path, verbose_name='Акт о проведенном ТО')
 
 class Radio_station(models.Model):
     class Meta:
@@ -168,3 +179,6 @@ class Radio_station(models.Model):
                                     help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
     service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
                                          help_text="Формат: dd.mm.yyyy", verbose_name='Дата следующего ТО')
+    certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
+    maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_report_directory_path,
+                                          verbose_name='Акт о проведенном ТО')
