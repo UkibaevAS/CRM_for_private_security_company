@@ -2,7 +2,7 @@ from django.db import models
 
 
 from config.models import Affiliated_company, Department, Position
-from document.models import Passport, Driving_license, Security_license, Medical_certificate, Periodic_inspection, Briefing
+from document.models import Passport, Driving_license, Security_license, Medical_certificate, Periodic_inspection, Electrical_certificate, Briefing
 from equipment.models import Uniform
 
 
@@ -41,6 +41,7 @@ class Worker(models.Model):
     driving_license = models.ForeignKey(Driving_license, blank=True, on_delete=models.PROTECT, verbose_name='Водительское удостоверение')
     medical_certificate = models.ForeignKey(Medical_certificate, blank=True, on_delete=models.PROTECT, verbose_name='Медицинская справка')
     periodic_inspection = models.ForeignKey(Periodic_inspection, blank=True, on_delete=models.PROTECT, verbose_name='Периодическая проверка')
+    electrical_certificate = models.ForeignKey(Electrical_certificate, blank=True, on_delete=models.PROTECT, verbose_name='Удостоверение по ЭБ')
     uniforms = models.ManyToManyField(Uniform, blank=True, related_name="uniforms", verbose_name='Униформа')
     archived = models.BooleanField(default=False, verbose_name='Уволен')
 
