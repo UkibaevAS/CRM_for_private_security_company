@@ -23,6 +23,9 @@ def copy_directory_path(instance:  Union["Passport", "Driving_license", "Securit
 
     else:
         document_title = "briefing"
+        return "Document/" + document_title + "/{filename}".format(
+            filename=filename,
+        )
 
     return "Document/" + document_title + "/" + instance.owner + "/{filename}".format(
         filename=filename,
