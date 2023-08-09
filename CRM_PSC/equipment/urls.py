@@ -15,13 +15,13 @@ from .views import (
 app_name = 'equipment'
 
 routers = DefaultRouter()
-routers.register('Gun', GunViewSet)
-routers.register('Handcuffs', HandcuffsViewSet)
-routers.register('Rubber_stick', Rubber_stickViewSet)
-routers.register('Special_spray', Special_sprayViewSet)
-routers.register('Armor', ArmorViewSet)
-routers.register('Video_recorder', Video_recorderViewSet)
-routers.register('Radio_station', Radio_stationViewSet)
+routers.register('gun', GunViewSet)
+routers.register('handcuffs', HandcuffsViewSet)
+routers.register('rubber_stick', Rubber_stickViewSet)
+routers.register('special_spray', Special_sprayViewSet)
+routers.register('armor', ArmorViewSet)
+routers.register('video_recorder', Video_recorderViewSet)
+routers.register('radio_station', Radio_stationViewSet)
 
 urlpatterns = [
     path('api/', include(routers.urls)),

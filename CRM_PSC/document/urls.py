@@ -18,16 +18,16 @@ from .views import (
 app_name = "document"
 
 routers = DefaultRouter()
-routers.register('Passport', PassportViewSet)
-routers.register('Driving_license', Driving_licenseViewSet)
-routers.register('Security_license', Security_licenseViewSet)
-routers.register('Medical_certificate', Medical_certificateViewSet)
-routers.register('Periodic_inspection', Periodic_inspectionViewSet)
-routers.register('Electrical_certificate', Electrical_certificateViewSet)
-routers.register('Vehicle_passport', Vehicle_passportViewSet)
-routers.register('Registration_certificate', Registration_certificateViewSet)
-routers.register('Insurance_policy', Insurance_policyViewSet)
-routers.register('Briefing', BriefingViewSet)
+routers.register('passport', PassportViewSet)
+routers.register('driving_license', Driving_licenseViewSet)
+routers.register('security_license', Security_licenseViewSet)
+routers.register('medical_certificate', Medical_certificateViewSet)
+routers.register('periodic_inspection', Periodic_inspectionViewSet)
+routers.register('electrical_certificate', Electrical_certificateViewSet)
+routers.register('vehicle_passport', Vehicle_passportViewSet)
+routers.register('registration_certificate', Registration_certificateViewSet)
+routers.register('insurance_policy', Insurance_policyViewSet)
+routers.register('briefing', BriefingViewSet)
 
 urlpatterns = [
     path('api/', include(routers.urls)),

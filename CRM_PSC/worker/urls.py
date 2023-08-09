@@ -8,7 +8,7 @@ from .views import WorkerViewSet
 app_name = "worker"
 
 routers = DefaultRouter()
-routers.register('workers', WorkerViewSet)
+routers.register('worker', WorkerViewSet)
 
 
 

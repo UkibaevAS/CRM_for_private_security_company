@@ -7,7 +7,7 @@ from .views import VehicleViewSet
 app_name = 'vehicle'
 
 routers = DefaultRouter()
-routers.register('Vehicle', VehicleViewSet)
+routers.register('vehicle', VehicleViewSet)
 
 urlpatterns = [
     path('api/', include(routers.urls)),

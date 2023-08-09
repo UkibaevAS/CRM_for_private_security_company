@@ -10,9 +10,9 @@ from .views import (
 app_name = 'security_system'
 
 routers = DefaultRouter()
-routers.register('Security_system', Security_systemViewSet)
-routers.register('Alarm_system', Alarm_systemViewSet)
-routers.register('Webcam', WebcamViewSet)
+routers.register('security_system', Security_systemViewSet)
+routers.register('alarm_system', Alarm_systemViewSet)
+routers.register('webcam', WebcamViewSet)
 
 urlpatterns = [
     path('api/', include(routers.urls)),
