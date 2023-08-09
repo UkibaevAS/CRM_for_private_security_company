@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
-    'api.apps.ApiConfig',
     'worker.apps.WorkerConfig',
     'document.apps.DocumentConfig',
     "security_system.apps.SecuritySystemConfig",
