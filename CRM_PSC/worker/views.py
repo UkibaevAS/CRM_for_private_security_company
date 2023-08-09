@@ -1,11 +1,14 @@
-from django.shortcuts import render
-from rest_framework.request import Request
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter
 
-from CRM_PSC.worker.models import Worker
+from .serializers import WorkerSerializer
+from .models import Worker
 
 
-class Number_Of_Empoyees(APIView):
-    def get(self, request: Request) -> Response:
-        queryset = Worker.objects.all()
+class WorkerViewSet(ModelViewSet):
+    queryset = Worker.objects.all()
+    serializer_class = WorkerSerializer
+    filter_backends = [
+        SearchFilter,
+    ]
+    search_fields = ['second_name']
