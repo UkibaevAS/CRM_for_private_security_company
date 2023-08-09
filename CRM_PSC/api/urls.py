@@ -1,9 +1,9 @@
 from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
-from .views import hello_view, NumberEmployeesViewSet #NumberEmployees
+from api.views import hello_view, NumberEmployeesViewSet
 
-routers = DefaultRouter
+routers = DefaultRouter()
 routers.register('workers', NumberEmployeesViewSet)
 
 app_name = "api"

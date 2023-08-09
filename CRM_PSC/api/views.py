@@ -9,8 +9,9 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
-from CRM_PSC.api.serializers import WorkerSerializer
-from CRM_PSC.worker.models import Worker
+# from CRM_PSC.api.serializers import WorkerSerializer
+from worker.models import Worker
+from api.serializers import WorkerSerializer
 
 
 @api_view()
@@ -29,14 +30,14 @@ class NumberEmployeesViewSet(ModelViewSet):
     serializer_class = WorkerSerializer
     filter_backends = [
         SearchFilter,
-        DjangoFilterBackend,
+        #DjangoFilterBackend,
     ]
     search_fields = ['second_name']
 
-    filterset_fiels = [
-        'second_name',
-        'official_employment',
-        'organization',
-        'category',
-        'electrical_safety_qualification',
-    ]
+    # filterset_fields = [
+    #     'second_name',
+    #     'official_employment',
+    #     'organization',
+    #     'category',
+    #     'electrical_safety_qualification',
+    # ]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from CRM_PSC.worker.models import Worker
+from worker.models import Worker
 
 
 
