@@ -47,18 +47,13 @@ class Security_system(models.Model):
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    installation_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy: dd.mm.yyyy",
-                                         verbose_name='Дата установки')
+    installation_date = models.DateField(null=True, blank=True, verbose_name='Дата установки')
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             help_text="Количество месяцев: XX", verbose_name='Периодичность ТО')
-    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                        help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy",
-                                    verbose_name='Дата поступления')
-    service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
-    service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата следующего ТО')
+    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
+    service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
+    service_date_next = models.DateField(null=True, blank=True, verbose_name='Дата следующего ТО')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_certificate_directory_path, verbose_name='Паспорт')
     maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_maintenance_report_directory_path,
                                           verbose_name='Акт о проведенном ТО')
@@ -78,19 +73,13 @@ class Alarm_system(models.Model):
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    installation_date = models.CharField(max_length=10, null=True, blank=True,
-                                         help_text="Формат: dd.mm.yyyy: dd.mm.yyyy",
-                                         verbose_name='Дата установки')
+    installation_date = models.DateField(null=True, blank=True, verbose_name='Дата установки')
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             help_text="Количество месяцев: XX", verbose_name='Периодичность ТО')
-    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                        help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy",
-                                    verbose_name='Дата поступления')
-    service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
-    service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата следующего ТО')
+    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
+    service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
+    service_date_next = models.DateField(null=True, blank=True, verbose_name='Дата следующего ТО')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_certificate_directory_path, verbose_name='Паспорт')
     maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_maintenance_report_directory_path,
                                           verbose_name='Акт о проведенном ТО')
@@ -109,19 +98,13 @@ class Webcam(models.Model):
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    installation_date = models.CharField(max_length=10, null=True, blank=True,
-                                         help_text="Формат: dd.mm.yyyy: dd.mm.yyyy",
-                                         verbose_name='Дата установки')
+    installation_date = models.DateField(null=True, blank=True, verbose_name='Дата установки')
     maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
                                             help_text="Количество месяцев: XX", verbose_name='Периодичность ТО')
-    date_manufacture = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                        help_text="Формат: dd.mm.yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy",
-                                    verbose_name='Дата поступления')
-    service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
-    service_date_next = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                         help_text="Формат: dd.mm.yyyy", verbose_name='Дата следующего ТО')
+    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
+    service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
+    service_date_next = models.DateField(null=True, blank=True, verbose_name='Дата следующего ТО')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_certificate_directory_path, verbose_name='Паспорт')
     maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_maintenance_report_directory_path,
                                           verbose_name='Акт о проведенном ТО')

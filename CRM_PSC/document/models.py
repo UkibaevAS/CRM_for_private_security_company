@@ -36,20 +36,12 @@ class Passport(models.Model):
         verbose_name = 'Паспорт'
         verbose_name_plural = 'Паспорта'
 
-    owner = models.CharField(max_length=30, db_index=True,
-                            verbose_name='Владелец')
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True,
-                                         help_text=_("Серия и номер: 7521 123456"),
-                                         verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True,
-                                  help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    date_expiration = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                       help_text=_("Формат: dd.mm.yyyy"),
-                                       verbose_name='Срок действия')
-    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True,
-                                  verbose_name='Кем выдан')
-    place_registration = models.CharField(max_length=150, null=True, blank=True, db_index=True,
-                                          verbose_name='Место прописки')
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    date_expiration = models.DateField(null=True, blank=True, verbose_name='Дата окончания действия')
+    who_issued = models.CharField(max_length=50, verbose_name='Кем выдан')
+    place_registration = models.CharField(max_length=150, null=True, blank=True, verbose_name='Место прописки')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
     def __str__(self):
@@ -63,20 +55,13 @@ class Driving_license(models.Model):
         verbose_name = 'Водительское удостоверение'
         verbose_name_plural = 'Водительские удостоверения'
 
-    owner = models.CharField(max_length=30, db_index=True,
-                             verbose_name='Владелец')
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True,
-                                         help_text=_("Серия и номер: 7521 123456"),
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True,
-                                  help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    date_expiration = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                       help_text=_("Формат: dd.mm.yyyy"),
-                                       verbose_name='Срок действия')
-    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True,
-                                  verbose_name='Кем выдано')
-    driving_license_categories = models.CharField(max_length=50, null=True, blank=True, db_index=True,
-                                                  verbose_name=_('Разрешенные категории'))
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    date_expiration = models.DateField(verbose_name='Дата окончания действия')
+    who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
+    driving_license_categories = models.CharField(max_length=50, null=True, blank=True, verbose_name='Разрешенные категории')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
     def __str__(self):
@@ -88,18 +73,12 @@ class Security_license(models.Model):
         verbose_name = 'Удостоверение частного охранника'
         verbose_name_plural = 'Удостоверения частного охранника'
 
-    owner = models.CharField(max_length=30, db_index=True,
-                             verbose_name='Владелец')
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True,
-                                         help_text=_("Серия и номер: 7521 123456"),
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True,
-                                  help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    date_expiration = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                       help_text=_("Формат: dd.mm.yyyy"),
-                                       verbose_name='Срок действия')
-    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True,
-                                  verbose_name='Кем выдано')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    date_expiration = models.DateField(verbose_name='Дата окончания действия')
+    who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
     def __str__(self):
@@ -112,13 +91,11 @@ class Medical_certificate(models.Model):
         verbose_name = 'Медицинская справка'
         verbose_name_plural = 'Медицинские справки'
 
-    owner = models.CharField(max_length=30, db_index=True,
-                             verbose_name='Владелец')
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False, help_text="Формат: dd.mm.yyyy", verbose_name='Дата выдачи')
-    date_expiration = models.CharField(max_length=10, null=True, blank=True, db_index=True, help_text=_("Формат: dd.mm.yyyy"),
-                                       verbose_name='Дата окончания действия')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    date_expiration = models.DateField(verbose_name='Дата окончания действия')
     who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
@@ -133,12 +110,11 @@ class Periodic_inspection(models.Model):
         verbose_name = 'Периодическая проверка'
         verbose_name_plural = 'Периодические проверки'
 
-    owner = models.CharField(max_length=30, db_index=True,
-                             verbose_name='Владелец')
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text=_("Серия и номер: 7521 123456"),
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False,
-                                  help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    date_expiration = models.DateField(verbose_name='Дата окончания действия')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
     def __str__(self):
@@ -150,12 +126,11 @@ class Electrical_certificate(models.Model):
         verbose_name = 'Удостоверение по ЭБ'
         verbose_name_plural = 'Удостоверения по ЭБ'
 
-    owner = models.CharField(max_length=30, db_index=True,
-                            verbose_name='Владелец')
-    series_and_number = models.CharField(max_length=30, help_text=_("Серия и номер: 7521 123456"),
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, db_index=True, help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    test_date = models.CharField(max_length=10, db_index=True, help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата проверки')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    test_date = models.DateField(verbose_name='Дата проверки')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
     def __str__(self):
@@ -169,11 +144,11 @@ class Vehicle_passport(models.Model):
         verbose_name = 'Паспорт ТС'
         verbose_name_plural = 'Паспорта ТС'
 
-    owner = models.CharField(max_length=30, db_index=True, verbose_name='Владелец')
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
     VIN_number = models.CharField(max_length=20, verbose_name='VIN номер')
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True, verbose_name='Кем выдано')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path)
 
     def __str__(self):
@@ -188,14 +163,12 @@ class Registration_certificate(models.Model):
         verbose_name = 'Свидетельство о регистрации ТС'
         verbose_name_plural = 'Свидетельства о регистрации ТС'
 
-    owner = models.CharField(max_length=30, db_index=True, verbose_name='Владелец')
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
     license_plate = models.CharField(max_length=20, verbose_name='Номерной знак')
     name = models.CharField(max_length=20, verbose_name='Марка автомобиля')
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True,
-                                         help_text=_("Серия и номер: 7521 123456"), verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True,
-                                  help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True, verbose_name='Кем выдано')
+    series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path)
     def __str__(self):
         return f"{self.license_plate}"
@@ -207,17 +180,13 @@ class Insurance_policy(models.Model):
         verbose_name = 'Страховой полис'
         verbose_name_plural = 'Страховые полисы'
 
-    owner = models.CharField(max_length=30, db_index=True, verbose_name='Владелец')
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
     vehicle = models.CharField(max_length=20, verbose_name='Марка автомобиля')
     license_plate = models.CharField(max_length=20, verbose_name='Номерной знак')
-
-    series_and_number = models.CharField(max_length=30, null=False, blank=False, db_index=True,
-                                         help_text=_("Серия и номер: ААА 123456"), verbose_name='Серия и номер')
-    date_issue = models.CharField(max_length=10, null=False, blank=False, db_index=True,
-                                  help_text=_("Формат: dd.mm.yyyy"), verbose_name='Дата выдачи')
-    date_expiration = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy",
-                                       verbose_name='Дата окончания действия')
-    who_issued = models.CharField(max_length=50, null=True, blank=True, db_index=True, verbose_name='Кем выдано')
+    series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: ААА 123456", verbose_name='Серия и номер')
+    date_issue = models.DateField(verbose_name='Дата выдачи')
+    date_expiration = models.DateField(verbose_name='Дата окончания действия')
+    who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
 
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path)
     def __str__(self):
@@ -228,11 +197,11 @@ class Briefing(models.Model):
         verbose_name = 'Инструктаж'
         verbose_name_plural = 'Инструктажи'
 
-    name = models.CharField(max_length=30, db_index=True, verbose_name='Название')
+    owner = models.CharField(max_length=30, verbose_name='Владелец')
     description = models.TextField(verbose_name='Описание')
-    data_briefing = models.CharField(max_length=10, help_text="Формат: dd.mm.yyyy", verbose_name='data')
+    data_briefing = models.DateField(verbose_name='Дата инструктажа')
+    data_briefing_next = models.DateField(verbose_name='Дата следующего инструктажа')
     committee_chair = models.CharField(max_length=30, verbose_name='Кто проводил')
-    data_next_briefing = models.CharField(max_length=10, help_text="Формат: dd.mm.yyyy", verbose_name='Дата очередного инструктажа')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path)
 
     def __str__(self):

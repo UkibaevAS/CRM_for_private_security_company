@@ -1,5 +1,10 @@
-from rest_framework.viewsets import ModelViewSet
+from datetime import datetime, timedelta
 
+from rest_framework.viewsets import ModelViewSet
+# from django.db.models import Q
+
+
+timedelta1 = 60
 
 from .serializers import (
     PassportSerializer,
@@ -33,27 +38,34 @@ class PassportViewSet(ModelViewSet):
 
 
 class Driving_licenseViewSet(ModelViewSet):
-    queryset = Driving_license.objects.all()
+
+
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)  # вычисляем текущую дату + x суток
+    queryset = Driving_license.objects.filter(date_expiration__lte=current_date_plus_x)
     serializer_class = Driving_licenseSerializer
 
 
 class Security_licenseViewSet(ModelViewSet):
-    queryset = Security_license.objects.all()
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    queryset = Security_license.objects.filter(date_expiration__lte=current_date_plus_x)
     serializer_class = Security_licenseSerializer
 
 
 class Medical_certificateViewSet(ModelViewSet):
-    queryset = Medical_certificate.objects.all()
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    queryset = Medical_certificate.objects.filter(date_expiration__lte=current_date_plus_x)
     serializer_class = Medical_certificateSerializer
 
 
 class Periodic_inspectionViewSet(ModelViewSet):
-    queryset = Periodic_inspection.objects.all()
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    queryset = Periodic_inspection.objects.filter(date_expiration__lte=current_date_plus_x)
     serializer_class = Periodic_inspectionSerializer
 
 
 class Electrical_certificateViewSet(ModelViewSet):
-    queryset = Electrical_certificate.objects.all()
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    queryset = Electrical_certificate.objects.filter(test_date__lte=current_date_plus_x)
     serializer_class = Electrical_certificateSerializer
 
 
@@ -68,10 +80,12 @@ class Registration_certificateViewSet(ModelViewSet):
 
 
 class Insurance_policyViewSet(ModelViewSet):
-    queryset = Insurance_policy.objects.all()
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    queryset = Insurance_policy.objects.filter(date_expiration__lte=current_date_plus_x)
     serializer_class = Insurance_policySerializer
 
 
 class BriefingViewSet(ModelViewSet):
-    queryset = Briefing.objects.all()
+    current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    queryset = Briefing.objects.filter(data_briefing_next__lte=current_date_plus_x)
     serializer_class = BriefingSerializer

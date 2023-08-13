@@ -38,22 +38,18 @@ class Vehicle(models.Model):
     license_plate = models.CharField(max_length=20, verbose_name='Номерной знак')
     owner_company = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Владелец ТС юрлицо')
     owner_private = models.CharField(max_length=20, null=True, blank=True, verbose_name='Владелец ТС частное лицо', help_text="Фамилия и инициалы")
-    date_manufacture = models.CharField(max_length=10, help_text="Формат: yyyy", verbose_name='Дата производства')
-    receipt_date = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy",
-                                    verbose_name='Дата поступления')
+    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
     registration_certificate = models.ManyToManyField(Registration_certificate, related_name="registration_certificate",
                                                       verbose_name='Свидетельство о регистрации ТС')
     passport_copy = models.ManyToManyField(Vehicle_passport, related_name="passport_copy_vehicle",
                                            verbose_name='Паспорт транспортного средства')
     insurance_policy_limit = models.CharField(max_length=18, choices=INSURANCE_LIMIT_CHOISES,
                                               default='Без ограничения', verbose_name='Вид страховки')
-    date_expiration = models.CharField(max_length=10, null=True, blank=True, help_text="Формат: dd.mm.yyyy",
-                                       verbose_name='Дата окончания страхового полиса')
     insurance_policy_copy = models.ManyToManyField(Insurance_policy, related_name="insurance_policy_copy",
                                                    verbose_name='Страховой полис')
     mileage = models.PositiveIntegerField(default=0, null=True, blank=True, verbose_name='Пробег, км')
-    service_date = models.CharField(max_length=10, null=True, blank=True, db_index=True,
-                                    help_text="Формат: dd.mm.yyyy", verbose_name='Дата проведенного ТО')
+    service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
     engine_oil = models.CharField(max_length=20, null=True, blank=True, verbose_name='Марка моторного масла')
     engine_oil_viscosity = models.CharField(max_length=6, choices=ENGINE_OIL_VISCOSITY_GRADE_CHOICES, default='5W-40',
                                             verbose_name='Вязкость масла')
