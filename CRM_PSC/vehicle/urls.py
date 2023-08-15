@@ -10,5 +10,5 @@ routers = DefaultRouter()
 routers.register('vehicle', VehicleViewSet)
 
 urlpatterns = [
-    path('api/', include(routers.urls)),
+    path('', include(routers.urls)),
 ]
