@@ -14,15 +14,33 @@ from .views import (
 
 app_name = 'equipment'
 
-routers = DefaultRouter()
-routers.register('gun', GunViewSet)
-routers.register('handcuffs', HandcuffsViewSet)
-routers.register('rubber_stick', Rubber_stickViewSet)
-routers.register('special_spray', Special_sprayViewSet)
-routers.register('armor', ArmorViewSet)
-routers.register('video_recorder', Video_recorderViewSet)
-routers.register('radio_station', Radio_stationViewSet)
+routers1 = DefaultRouter()
+routers1.register('gun', GunViewSet)
+
+routers2 = DefaultRouter()
+routers2.register('cuffs', HandcuffsViewSet)
+
+routers3 = DefaultRouter()
+routers3.register('_stick', Rubber_stickViewSet)
+
+routers4 = DefaultRouter()
+routers4.register('_spray', Special_sprayViewSet)
+
+routers5 = DefaultRouter()
+routers5.register('mor', ArmorViewSet)
+
+routers6 = DefaultRouter()
+routers6.register('_recorder', Video_recorderViewSet)
+
+routers7 = DefaultRouter()
+routers7.register('_station', Radio_stationViewSet)
 
 urlpatterns = [
-    path('api/', include(routers.urls)),
+    path('', include(routers1.urls)),
+    path('hand', include(routers2.urls)),
+    path('rubber', include(routers3.urls)),
+    path('special', include(routers4.urls)),
+    path('ar', include(routers5.urls)),
+    path('video', include(routers6.urls)),
+    path('radio', include(routers7.urls)),
 ]

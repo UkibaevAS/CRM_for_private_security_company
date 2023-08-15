@@ -52,7 +52,7 @@ class Uniform(models.Model):
         verbose_name = 'Униформа'
         verbose_name_plural = 'Униформа'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     size = models.SmallIntegerField(default=0, verbose_name='Размер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
@@ -69,13 +69,13 @@ class Gun(models.Model):
         verbose_name = 'Вооружение'
         verbose_name_plural = 'Вооружение'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
-    date_test_shoot = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата контрольного отстрела')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
+    date_test_shoot = models.DateField(null=True, blank=True, verbose_name='Дата контрольного отстрела')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
@@ -88,12 +88,12 @@ class Handcuffs(models.Model):
         verbose_name = 'Наручники'
         verbose_name_plural = 'Наручники'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
@@ -106,11 +106,11 @@ class Rubber_stick(models.Model):
         verbose_name = 'Палка резиновая'
         verbose_name_plural = 'Палка резиновая'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
@@ -123,11 +123,11 @@ class Special_spray(models.Model):
         verbose_name = 'Аэрозоль специальный'
         verbose_name_plural = 'Аэрозоли специальные'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
     expiration_date = models.DateField(verbose_name='Срок годности')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
@@ -141,14 +141,14 @@ class Armor(models.Model):
         verbose_name = 'Бронезащита'
         verbose_name_plural = 'Бронезащита'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
-    protection_category = models.SmallIntegerField(default=0, null=True, blank=True, verbose_name='Класс защиты')
+    protection_category = models.SmallIntegerField(default=1, null=True, blank=True, verbose_name='Класс защиты')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
     def __str__(self):
@@ -160,17 +160,16 @@ class Video_recorder(models.Model):
         verbose_name = 'Видеорегистратор'
         verbose_name_plural = 'Видеорегистраторы'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
     installation_date = models.DateField(null=True, blank=True, verbose_name='Дата установки')
-    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
-                                            help_text="Количество месяцев: XX", verbose_name='Периодичность ТО')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, help_text="Количество месяцев: XX", verbose_name='Периодичность ТО')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
-    service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
+    service_date = models.DateField(null=True, blank=True, verbose_name='Дата проведенного ТО')
     service_date_next = models.DateField(null=True, blank=True, verbose_name='Дата следующего ТО')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
     maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_report_directory_path,
@@ -185,18 +184,17 @@ class Radio_station(models.Model):
         verbose_name = 'Радиостанция'
         verbose_name_plural = 'Радиостанции'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Наименование')
+    name = models.CharField(max_length=50, verbose_name='Наименование')
     description = models.CharField(max_length=100, verbose_name='Описание')
     factory_number = models.CharField(max_length=15, null=True, blank=True, verbose_name='Заводской номер')
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
     installation_date = models.DateField(null=True, blank=True, verbose_name='Дата установки')
-    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
-                                            help_text="Количество месяцев: XX",
+    maintenance_interval = models.CharField(max_length=15, null=False, blank=False,help_text="Количество месяцев: XX",
                                             verbose_name='Периодичность ТО')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
-    service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
+    service_date = models.DateField(null=True, blank=True, verbose_name='Дата проведенного ТО')
     service_date_next = models.DateField(null=True, blank=True, verbose_name='Дата следующего ТО')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
     maintenance_report = models.FileField(null=True, blank=True, upload_to=copy_report_directory_path,
