@@ -129,7 +129,7 @@ class Special_spray(models.Model):
                               verbose_name='Числится на балансе')
     date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
-    expiration_date = models.DateField(verbose_name='Срок годности')
+    expiration_date = models.DateField(verbose_name='Годен до')
     certificate = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Паспорт')
 
     def __str__(self):

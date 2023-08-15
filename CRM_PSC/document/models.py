@@ -146,13 +146,14 @@ class Vehicle_passport(models.Model):
 
     owner = models.CharField(max_length=30, verbose_name='Владелец')
     VIN_number = models.CharField(max_length=20, verbose_name='VIN номер')
+    license_plate = models.CharField(max_length=10, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
     who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path)
 
     def __str__(self):
-        return f"{self.VIN_number}"
+        return f"{self.license_plate}"
 
 
 
@@ -164,7 +165,7 @@ class Registration_certificate(models.Model):
         verbose_name_plural = 'Свидетельства о регистрации ТС'
 
     owner = models.CharField(max_length=30, verbose_name='Владелец')
-    license_plate = models.CharField(max_length=20, verbose_name='Номерной знак')
+    license_plate = models.CharField(max_length=10, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
     name = models.CharField(max_length=20, verbose_name='Марка автомобиля')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -182,7 +183,7 @@ class Insurance_policy(models.Model):
 
     owner = models.CharField(max_length=30, verbose_name='Владелец')
     vehicle = models.CharField(max_length=20, verbose_name='Марка автомобиля')
-    license_plate = models.CharField(max_length=20, verbose_name='Номерной знак')
+    license_plate = models.CharField(max_length=10, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: ААА 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
     date_expiration = models.DateField(verbose_name='Дата окончания действия')

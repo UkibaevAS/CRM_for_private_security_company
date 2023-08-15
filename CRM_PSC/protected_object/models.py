@@ -95,12 +95,12 @@ class Post(models.Model):
     number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
                                                         verbose_name='Количество охранников в ночную смену')
     performer = models.ForeignKey(Performer, verbose_name='Исполнитель', on_delete=models.PROTECT)
-    armors = models.ManyToManyField(Armor, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
-    guns = models.ManyToManyField(Gun, blank=True, related_name="guns_post", verbose_name='Вооружение')
-    radio_station = models.ManyToManyField(Radio_station, blank=True, related_name="radio_stations_post", verbose_name='Радиостанция')
-    webcams = models.ManyToManyField(Webcam, blank=True, related_name="webcams_post", verbose_name='Видеокамеры')
-    alarm_systems = models.ManyToManyField(Alarm_system, blank=True, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
-    vehicle = models.ManyToManyField(Vehicle, blank=True, related_name="vehicles_post", verbose_name='Автомобиль')
+    armors = models.ForeignKey(Armor, blank=True, on_delete=models.PROTECT, related_name="armors_post", verbose_name='Средства бронезащиты')
+    guns = models.ForeignKey(Gun, blank=True, on_delete=models.PROTECT, related_name="guns_post", verbose_name='Вооружение')
+    radio_station = models.ForeignKey(Radio_station, on_delete=models.PROTECT, blank=True, related_name="radio_stations_post", verbose_name='Радиостанция')
+    webcams = models.ForeignKey(Webcam, blank=True, on_delete=models.PROTECT, related_name="webcams_post", verbose_name='Видеокамеры')
+    alarm_systems = models.ForeignKey(Alarm_system, blank=True, on_delete=models.PROTECT, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
+    vehicle = models.ForeignKey(Vehicle, blank=True, on_delete=models.PROTECT, related_name="vehicles_post", verbose_name='Автомобиль')
 
     def __str__(self):
         return f"{self.name}"
