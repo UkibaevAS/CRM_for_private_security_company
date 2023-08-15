@@ -11,12 +11,21 @@ from .views import (
 
 app_name = 'protected_object'
 
-routers = DefaultRouter()
-routers.register('client', ClientViewSet)
-routers.register('performer', PerformerViewSet)
-routers.register('post', PostViewSet)
-routers.register('protected_object', Protected_objectViewSet)
+routers1 = DefaultRouter()
+routers1.register('client', ClientViewSet)
+
+routers2 = DefaultRouter()
+routers2.register('former', PerformerViewSet)
+
+routers3 = DefaultRouter()
+routers3.register('st', PostViewSet)
+
+routers4 = DefaultRouter()
+routers4.register('_object', Protected_objectViewSet)
 
 urlpatterns = [
-    path('api/', include(routers.urls)),
+    path('', include(routers1.urls)),
+    path('per', include(routers2.urls)),
+    path('po', include(routers3.urls)),
+    path('protected', include(routers4.urls)),
 ]
