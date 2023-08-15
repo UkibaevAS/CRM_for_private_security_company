@@ -95,14 +95,12 @@ class Post(models.Model):
     number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
                                                         verbose_name='Количество охранников в ночную смену')
     performer = models.ForeignKey(Performer, verbose_name='Исполнитель', on_delete=models.PROTECT)
-    armors = models.ManyToManyField(Armor, null=True, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
-    guns = models.ManyToManyField(Gun, null=True, blank=True, related_name="guns_post", verbose_name='Вооружение')
-    radio_station = models.ManyToManyField(Radio_station, null=True, blank=True, related_name="radio_stations_post",
-                                            verbose_name='Радиостанция')
-    webcams = models.ManyToManyField(Webcam, null=True, blank=True, related_name="webcams_post", verbose_name='Видеокамеры')
-    alarm_systems = models.ManyToManyField(Alarm_system, null=True, blank=True, related_name="alarm_systems_post",
-                                           verbose_name='Средства сигнализации')
-    vehicle = models.ManyToManyField(Vehicle, null=True, blank=True, related_name="vehicles_post", verbose_name='Автомобиль')
+    armors = models.ManyToManyField(Armor, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
+    guns = models.ManyToManyField(Gun, blank=True, related_name="guns_post", verbose_name='Вооружение')
+    radio_station = models.ManyToManyField(Radio_station, blank=True, related_name="radio_stations_post", verbose_name='Радиостанция')
+    webcams = models.ManyToManyField(Webcam, blank=True, related_name="webcams_post", verbose_name='Видеокамеры')
+    alarm_systems = models.ManyToManyField(Alarm_system, blank=True, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
+    vehicle = models.ManyToManyField(Vehicle, blank=True, related_name="vehicles_post", verbose_name='Автомобиль')
 
     def __str__(self):
         return f"{self.name}"
@@ -115,8 +113,8 @@ class Protected_object(models.Model):
     name = models.CharField(max_length=50, db_index=True, verbose_name='Название объекта')
     address = models.CharField(max_length=100, db_index=True, verbose_name='Адрес')
     curator = models.ForeignKey(Worker, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Куратор')
-    posts = models.ManyToManyField(Post, null=True, blank=True, related_name="posts", verbose_name='Посты')
-    security_systems = models.ManyToManyField(Security_system, null=True, blank=True, related_name="security_systems",
+    posts = models.ManyToManyField(Post, blank=True, related_name="posts", verbose_name='Посты')
+    security_systems = models.ManyToManyField(Security_system, blank=True, related_name="security_systems",
                                               verbose_name='Охранные системы')
     clients = models.ManyToManyField(Client, related_name="organizations", verbose_name='Заказчик')
     performer = models.ForeignKey(Performer, on_delete=models.PROTECT, verbose_name='Исполнитель')
