@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 # from django.db.models import Q
 
 
-timedelta1 = 60
+timedelta1 = 60 # За количество суток до окончания срока действия документа
 
 from .serializers import (
     PassportSerializer,
