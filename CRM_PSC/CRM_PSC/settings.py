@@ -126,9 +126,9 @@ USE_TZ = True
 
 USE_L10N = True
 
-LOCAL_PATHS = [
-    BASE_DIR / "locale/"
-]
+# LOCAL_PATHS = [
+#     BASE_DIR / "locale/"
+# ]
 
 
 # Static files (CSS, JavaScript, Images)
