@@ -45,7 +45,7 @@ class Worker(models.Model):
     date_birth = models.DateField(verbose_name='Дата рождения')
     official_employment = archived = models.BooleanField(default=False, verbose_name='Официальное трудоустройство')
     data_employment = models.DateField(verbose_name='Дата трудоустройства')
-    organization = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT)
+    organization = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT, related_name="organization")
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)
     category = models.CharField(max_length=11, choices=CATEGORY_CHOISES, default='Нет разряда', db_index=True, verbose_name='Разряд')
