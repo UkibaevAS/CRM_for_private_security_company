@@ -8,4 +8,4 @@ class WorkerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Worker
         fields = "__all__"
-        renderers = [renderers.JSONRenderer]
+        # renderers = [renderers.JSONRenderer]
