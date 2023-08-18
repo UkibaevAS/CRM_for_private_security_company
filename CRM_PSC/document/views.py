@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
 
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 # from django.db.models import Q
 
@@ -32,60 +35,90 @@ from .models import (
 )
 
 
-class PassportViewSet(ModelViewSet):
-    queryset = Passport.objects.all()
-    serializer_class = PassportSerializer
+class PassportListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Passport.objects.all()
+        serialized = PassportSerializer(data, many=True)
+        return Response({'passports': serialized.data})
 
 
-class Driving_licenseViewSet(ModelViewSet):
+
+class Driving_licenseListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Driving_license.objects.all()
+        serialized = Driving_licenseSerializer(data, many=True)
+        return Response({'driving_license': serialized.data})
+
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)  # вычисляем текущую дату + x суток
+    # queryset = Driving_license.objects.filter(date_expiration__lte=current_date_plus_x)
+    # serializer_class = Driving_licenseSerializer
 
 
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)  # вычисляем текущую дату + x суток
-    queryset = Driving_license.objects.filter(date_expiration__lte=current_date_plus_x)
-    serializer_class = Driving_licenseSerializer
+class Security_licenseListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Security_license.objects.all()
+        serialized = Security_licenseSerializer(data, many=True)
+        return Response({'security_license': serialized.data})
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    # queryset = Security_license.objects.filter(date_expiration__lte=current_date_plus_x)
+    # serializer_class = Security_licenseSerializer
 
 
-class Security_licenseViewSet(ModelViewSet):
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)
-    queryset = Security_license.objects.filter(date_expiration__lte=current_date_plus_x)
-    serializer_class = Security_licenseSerializer
+class Medical_certificateListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Medical_certificate.objects.all()
+        serialized = Medical_certificateSerializer(data, many=True)
+        return Response({'medical_certificate': serialized.data})
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    # queryset = Medical_certificate.objects.filter(date_expiration__lte=current_date_plus_x)
+    # serializer_class = Medical_certificateSerializer
 
 
-class Medical_certificateViewSet(ModelViewSet):
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)
-    queryset = Medical_certificate.objects.filter(date_expiration__lte=current_date_plus_x)
-    serializer_class = Medical_certificateSerializer
+class Periodic_inspectionListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Periodic_inspection.objects.all()
+        serialized = Periodic_inspectionSerializer(data, many=True)
+        return Response({'periodic_inspection': serialized.data})
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    # queryset = Periodic_inspection.objects.filter(date_expiration__lte=current_date_plus_x)
+    # serializer_class = Periodic_inspectionSerializer
 
 
-class Periodic_inspectionViewSet(ModelViewSet):
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)
-    queryset = Periodic_inspection.objects.filter(date_expiration__lte=current_date_plus_x)
-    serializer_class = Periodic_inspectionSerializer
+class Electrical_certificateListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Electrical_certificate.objects.all()
+        serialized = Electrical_certificateSerializer(data, many=True)
+        return Response({'electrical_certificate': serialized.data})
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    # queryset = Electrical_certificate.objects.filter(test_date__lte=current_date_plus_x)
+    # serializer_class = Electrical_certificateSerializer
 
 
-class Electrical_certificateViewSet(ModelViewSet):
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)
-    queryset = Electrical_certificate.objects.filter(test_date__lte=current_date_plus_x)
-    serializer_class = Electrical_certificateSerializer
-
-
-class Vehicle_passportViewSet(ModelViewSet):
+class Vehicle_passportListView(APIView):
     queryset = Vehicle_passport.objects.all()
     serializer_class = Vehicle_passportSerializer
 
 
-class Registration_certificateViewSet(ModelViewSet):
+class Registration_certificateListView(APIView):
     queryset = Registration_certificate.objects.all()
     serializer_class = Registration_certificateSerializer
 
 
-class Insurance_policyViewSet(ModelViewSet):
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)
-    queryset = Insurance_policy.objects.filter(date_expiration__lte=current_date_plus_x)
-    serializer_class = Insurance_policySerializer
+class Insurance_policyListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Insurance_policy.objects.all()
+        serialized = Insurance_policySerializer(data, many=True)
+        return Response({'insurance_policy': serialized.data})
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    # queryset = Insurance_policy.objects.filter(date_expiration__lte=current_date_plus_x)
+    # serializer_class = Insurance_policySerializer
 
 
-class BriefingViewSet(ModelViewSet):
-    current_date_plus_x = datetime.now() + timedelta(timedelta1)
-    queryset = Briefing.objects.filter(data_briefing_next__lte=current_date_plus_x)
-    serializer_class = BriefingSerializer
+class BriefingListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Briefing.objects.all()
+        serialized = BriefingSerializer(data, many=True)
+        return Response({'passports': serialized.data})
+    # current_date_plus_x = datetime.now() + timedelta(timedelta1)
+    # queryset = Briefing.objects.filter(data_briefing_next__lte=current_date_plus_x)
+    # serializer_class = BriefingSerializer

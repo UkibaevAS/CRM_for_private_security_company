@@ -33,6 +33,7 @@ class WorkerForm(forms.ModelForm):
 @admin.register(Worker)
 class WorkerAdmin(admin.ModelAdmin):
     form = WorkerForm
+    ordering = ['second_name']
     actions = [
         mark_archived,
         mark_unarchived,

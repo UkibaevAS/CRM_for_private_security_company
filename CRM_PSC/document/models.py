@@ -198,7 +198,7 @@ class Briefing(models.Model):
         verbose_name = 'Инструктаж'
         verbose_name_plural = 'Инструктажи'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=30, help_text="Например: Охрана труда", verbose_name='Дисциплина')
     description = models.TextField(verbose_name='Описание')
     data_briefing = models.DateField(verbose_name='Дата инструктажа')
     data_briefing_next = models.DateField(verbose_name='Дата следующего инструктажа')

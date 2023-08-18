@@ -13,12 +13,12 @@ class Affiliated_company(models.Model):
         verbose_name = 'Аффилированная (дочерняя) компания'
         verbose_name_plural = 'Аффилированные (дочернии) компании'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Название организации')
-    address = models.CharField(max_length=100, db_index=True, verbose_name='Адрес')
+    name = models.CharField(max_length=50, verbose_name='Название организации')
+    address = models.CharField(max_length=100, verbose_name='Адрес')
     phone = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233", verbose_name='Телефон')
     email = models.EmailField(max_length=254, null=True, blank=True)
-    INN = models.PositiveBigIntegerField(default=0, verbose_name='ИНН')
-    OGRN = models.PositiveBigIntegerField(default=0, verbose_name='ОГРН')
+    INN = models.PositiveBigIntegerField(default=0, null=True, blank=True, verbose_name='ИНН')
+    OGRN = models.PositiveBigIntegerField(default=0, null=True, blank=True, verbose_name='ОГРН')
     bank_details = models.CharField(max_length=200, null=True, blank=True, verbose_name='Банковские реквизиты')
     director = models.CharField(max_length=75, verbose_name='Директор')
     contact_person = models.CharField(max_length=75, verbose_name='Контактное лицо')

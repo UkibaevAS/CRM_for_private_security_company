@@ -1,7 +1,7 @@
 from django.db import models
 
 
-from config.models import Affiliated_company, Department, Position
+from structure_of_company.models import Affiliated_company, Department, Position
 from document.models import Passport, Driving_license, Security_license, Medical_certificate, Periodic_inspection, Electrical_certificate, Briefing
 # from equipment.models import Uniform
 
@@ -44,14 +44,14 @@ class Worker(models.Model):
     address = models.CharField(max_length=150, verbose_name='Адрес проживания')
     date_birth = models.DateField(verbose_name='Дата рождения')
     official_employment = archived = models.BooleanField(default=False, verbose_name='Официальное трудоустройство')
-    data_employment = models.DateField(verbose_name='Дата трудоустройства')
-    organization = models.ForeignKey(Affiliated_company, on_delete=models.PROTECT, related_name="organization")
-    department = models.ForeignKey(Department, on_delete=models.PROTECT)
-    position = models.ForeignKey(Position, on_delete=models.PROTECT)
+    data_employment = models.DateField(null=True, blank=True, verbose_name='Дата трудоустройства')
+    organization = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT, related_name="organization")
+    department = models.ForeignKey(Department, null=True, blank=True, on_delete=models.PROTECT)
+    position = models.ForeignKey(Position, null=True, blank=True, on_delete=models.PROTECT)
     category = models.CharField(max_length=11, choices=CATEGORY_CHOISES, default='Нет разряда', db_index=True, verbose_name='Разряд')
     electrical_safety_qualification = models.CharField(max_length=11, choices=ELECTRICAL_QUALIFICATION_CHOISES, default='Нет разряда', verbose_name='Разряд по электробезопасности')
     briefings = models.ManyToManyField(Briefing, blank=True, related_name="briefings", verbose_name='Инструктажи')
-    passport = models.ForeignKey(Passport, on_delete=models.PROTECT, verbose_name='Паспорт')
+    passport = models.ForeignKey(Passport, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Паспорт')
     security_license = models.ForeignKey(Security_license, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Удостоверение частного охранника')
     driving_license = models.ForeignKey(Driving_license, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Водительское удостоверение')
     medical_certificate = models.ForeignKey(Medical_certificate, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Медицинская справка')

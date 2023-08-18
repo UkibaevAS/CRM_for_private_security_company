@@ -1,52 +1,33 @@
 from django.urls import path, include
 
-from rest_framework.routers import DefaultRouter
 
 from .views import (
-    PassportViewSet,
-    Driving_licenseViewSet,
-    Security_licenseViewSet,
-    Medical_certificateViewSet,
-    Periodic_inspectionViewSet,
-    Electrical_certificateViewSet,
-    Vehicle_passportViewSet,
-    Registration_certificateViewSet,
-    Insurance_policyViewSet,
-    BriefingViewSet
+    PassportListView,
+    Driving_licenseListView,
+    Security_licenseListView,
+    Medical_certificateListView,
+    Periodic_inspectionListView,
+    Electrical_certificateListView,
+    Vehicle_passportListView,
+    Registration_certificateListView,
+    Insurance_policyListView,
+    BriefingListView,
 )
 
 app_name = "document"
 
-routers1 = DefaultRouter()
-routers1.register('passport', PassportViewSet)
-routers2 = DefaultRouter()
-routers2.register('_license', Driving_licenseViewSet)
-routers3 = DefaultRouter()
-routers3.register('_license', Security_licenseViewSet)
-routers4 = DefaultRouter()
-routers4.register('_certificate', Medical_certificateViewSet)
-routers5 = DefaultRouter()
-routers5.register('_inspection', Periodic_inspectionViewSet)
-routers6 = DefaultRouter()
-routers6.register('_certificate', Electrical_certificateViewSet)
-routers7 = DefaultRouter()
-routers7.register('_passport', Vehicle_passportViewSet)
-routers8 = DefaultRouter()
-routers8.register('_certificate', Registration_certificateViewSet)
-routers9 = DefaultRouter()
-routers9.register('_policy', Insurance_policyViewSet)
-routers10 = DefaultRouter()
-routers10.register('briefing', BriefingViewSet)
+
+
 
 urlpatterns = [
-    path('', include(routers1.urls)),
-    path('driving', include(routers2.urls)),
-    path('security', include(routers3.urls)),
-    path('medical', include(routers4.urls)),
-    path('periodic', include(routers5.urls)),
-    path('electrical', include(routers6.urls)),
-    path('vehicle', include(routers7.urls)),
-    path('registration', include(routers8.urls)),
-    path('insurance', include(routers9.urls)),
-    path('briefing/', include(routers10.urls)),
+    path('passport/', PassportListView.as_view(), name='passport'),
+    path('driving_license/', Driving_licenseListView.as_view(), name='driving_license'),
+    path('security_license/', Security_licenseListView.as_view(), name='security_license'),
+    path('medical_certificate/', Medical_certificateListView.as_view(), name='medical_certificate'),
+    path('periodic_inspection/', Periodic_inspectionListView.as_view(), name='periodic_inspection'),
+    path('electrical_certificate/', Electrical_certificateListView.as_view(), name='electrical_certificate'),
+    path('vehicle_passport', Vehicle_passportListView.as_view(), name='vehicle_passport'),
+    path('registration_certificate', Registration_certificateListView.as_view(), name='registration_certificate'),
+    path('insurance_policy', Insurance_policyListView.as_view(), name='insurance_policy'),
+    path('briefing/', BriefingListView.as_view(), name='briefing'),
 ]

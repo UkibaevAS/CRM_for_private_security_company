@@ -1,6 +1,6 @@
 from django.db import models
 
-from config.models import Affiliated_company
+from structure_of_company.models import Affiliated_company
 from typing import Union
 
 

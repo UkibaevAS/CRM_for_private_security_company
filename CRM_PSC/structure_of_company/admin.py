@@ -3,7 +3,7 @@ import os
 from django.contrib import admin
 from django import forms
 
-from config.models import Affiliated_company, Department, Position
+from .models import Affiliated_company, Department, Position
 
 
 class Affiliated_companyForm(forms.ModelForm):
