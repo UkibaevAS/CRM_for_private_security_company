@@ -36,5 +36,5 @@ class WorkerDetailSerializer(serializers.ModelSerializer):
     def get_photo(self, obj):
         request = self.context.get('request')
         if obj.photo:  # Проверяем, что фото существует
-            return request.build_absolute_url(obj.photo.url)
+            return request.build_absolute_uri(obj.photo.url)
         return None
