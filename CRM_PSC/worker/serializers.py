@@ -26,7 +26,6 @@ class WorkerDetailSerializer(serializers.ModelSerializer):
             'second_name',
             'photo',
             'phone',
-            'address',
             'date_birth',
             'official_employment',
             'organization',

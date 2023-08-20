@@ -7,6 +7,6 @@ app_name = "worker"
 
 urlpatterns = [
     path('', WorkerListView.as_view(), name='workers'),
-    path('info/', WorkerDetailView.as_view(), name='workers_info'),
+    path('info/<str:last_name>/', WorkerDetailView.as_view(), name='workers_info'),
 ]
 

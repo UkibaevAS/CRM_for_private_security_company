@@ -17,8 +17,6 @@ class WorkerListView(APIView):
 
 class WorkerDetailView(APIView):
     def get(self, request, last_name):
-        #last_name = request.GET.get('last_name')
-        print(last_name)
         workers = Worker.objects.filter(second_name=last_name)
         if workers:
             serialized = WorkerDetailSerializer(workers, many=True)
