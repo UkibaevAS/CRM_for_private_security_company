@@ -18,6 +18,7 @@ class WorkerSerializer(serializers.ModelSerializer):
 
 class WorkerDetailSerializer(serializers.ModelSerializer):
     organization = serializers.CharField(source='organization.name')
+    photo = serializers.SerializerMethodField()
     class Meta:
         model = Worker
         fields = [
@@ -31,3 +32,9 @@ class WorkerDetailSerializer(serializers.ModelSerializer):
             'organization',
             'category',
         ]
+
+    def get_photo(self, obj):
+        request = self.context.get('request')
+        if obj.photo:  # Проверяем, что фото существует
+            return request.build_absolute_uri(obj.photo.url)
+        return None

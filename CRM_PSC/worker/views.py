@@ -24,3 +24,4 @@ class WorkerDetailView(APIView):
         else:
             return Response({"message": "Работники с указанной фамилией не найдены"}, status=404)
 
+
