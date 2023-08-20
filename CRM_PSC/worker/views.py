@@ -19,7 +19,7 @@ class WorkerDetailView(APIView):
     def get(self, request, last_name):
         workers = Worker.objects.filter(second_name=last_name)
         if workers:
-            serialized = WorkerDetailSerializer(workers, many=True)
+            serialized = WorkerDetailSerializer(workers, many=True, context={'request': request})
             return Response({'workers': serialized.data})
         else:
             return Response({"message": "Работники с указанной фамилией не найдены"}, status=404)
