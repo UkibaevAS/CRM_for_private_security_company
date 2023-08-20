@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
 from typing import Union
 
@@ -40,7 +39,7 @@ class Passport(models.Model):
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
     date_expiration = models.DateField(null=True, blank=True, verbose_name='Дата окончания действия')
-    who_issued = models.CharField(max_length=50, verbose_name='Кем выдан')
+    who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдан')
     place_registration = models.CharField(max_length=150, null=True, blank=True, verbose_name='Место прописки')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 

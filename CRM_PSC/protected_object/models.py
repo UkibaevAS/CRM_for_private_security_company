@@ -94,7 +94,7 @@ class Post(models.Model):
                                                         verbose_name='Количество охранников в дневную смену')
     number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
                                                         verbose_name='Количество охранников в ночную смену')
-    performer = models.ForeignKey(Performer, verbose_name='Исполнитель', on_delete=models.PROTECT)
+    performer = models.ForeignKey(Performer, blank=True, verbose_name='Исполнитель', on_delete=models.PROTECT)
     armors = models.ForeignKey(Armor, blank=True, on_delete=models.PROTECT, related_name="armors_post", verbose_name='Средства бронезащиты')
     guns = models.ForeignKey(Gun, blank=True, on_delete=models.PROTECT, related_name="guns_post", verbose_name='Вооружение')
     radio_station = models.ForeignKey(Radio_station, on_delete=models.PROTECT, blank=True, related_name="radio_stations_post", verbose_name='Радиостанция')
