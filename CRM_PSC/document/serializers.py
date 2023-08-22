@@ -94,5 +94,5 @@ class BriefingSerializer(serializers.ModelSerializer):
         model = Briefing
         fields = [
             'owner',
-            'data_briefing_next',
+            'date_briefing_next',
         ]
