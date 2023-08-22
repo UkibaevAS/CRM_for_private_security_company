@@ -129,7 +129,7 @@ class Electrical_certificate(models.Model):
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
-    test_date = models.DateField(verbose_name='Дата проверки')
+    test_date = models.DateField(verbose_name='Дата следующей проверки знаний')
     copy = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Копия')
 
     def __str__(self):

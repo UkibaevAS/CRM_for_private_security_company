@@ -64,7 +64,7 @@ class Electrical_certificateSerializer(serializers.ModelSerializer):
         model = Electrical_certificate
         fields = [
             'owner',
-            'date_expiration',
+            'test_date',
         ]
 
 
