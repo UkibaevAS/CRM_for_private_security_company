@@ -42,7 +42,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"{x} affiliated_company created"))
 
         self.stdout.write("Create worker")
-        n = 150
+        n = 100
         # conn = sqlite3.connect(r'C:\Users\Себастьян Перейро\Documents\GitHub\CRM_for_private_security_company\CRM_PSC\db.sqlite3')
         # conn = sqlite3.connect('/home/andrey/PycharmProjects/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
         conn = sqlite3.connect('/home/einsatz174/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
