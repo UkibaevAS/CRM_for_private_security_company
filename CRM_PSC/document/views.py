@@ -112,7 +112,7 @@ class Insurance_policyListView(APIView):
     def get(self, request: Request) -> Response:
         data = Insurance_policy.objects.all()
         serialized = Insurance_policySerializer(data, many=True)
-        return Response({'insurance_policy': serialized.data})
+        return Response({'document': serialized.data})
     # current_date_plus_x = datetime.now() + timedelta(timedelta1)
     # queryset = Insurance_policy.objects.filter(date_expiration__lte=current_date_plus_x)
     # serializer_class = Insurance_policySerializer
@@ -122,7 +122,7 @@ class BriefingListView(APIView):
     def get(self, request: Request) -> Response:
         data = Briefing.objects.all()
         serialized = BriefingSerializer(data, many=True)
-        return Response({'passports': serialized.data})
+        return Response({'document': serialized.data})
     # current_date_plus_x = datetime.now() + timedelta(timedelta1)
     # queryset = Briefing.objects.filter(data_briefing_next__lte=current_date_plus_x)
     # serializer_class = BriefingSerializer
