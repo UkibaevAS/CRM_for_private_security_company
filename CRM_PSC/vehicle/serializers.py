@@ -18,7 +18,7 @@ class VehicleSerializer(serializers.ModelSerializer):
         ]
 
 class VehicleDetailSerializer(serializers.ModelSerializer):
-    organization = serializers.CharField(source='organization.name')
+    owner_company = serializers.CharField(source='owner_company.name')
     photo = serializers.SerializerMethodField()
     class Meta:
         model = Vehicle
