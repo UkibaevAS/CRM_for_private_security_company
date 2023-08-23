@@ -1,14 +1,13 @@
 from django.urls import path, include
 
-from rest_framework.routers import DefaultRouter
 
-from .views import VehicleViewSet
+from .views import VehicleistView, VehicleDetailView
 
 app_name = 'vehicle'
 
-routers = DefaultRouter()
-routers.register('vehicle', VehicleViewSet)
+
 
 urlpatterns = [
-    path('', include(routers.urls)),
+    path('', VehicleistView.as_view(), name='vehicle'),
+    path('info/<str:last_name>/', VehicleDetailView.as_view(), name='vehicle_info'),
 ]

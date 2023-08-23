@@ -1,11 +1,12 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+
 
 from equipment.models import Radio_station, Armor, Gun
 from security_system.models import Webcam, Alarm_system, Security_system
 from vehicle.models import Vehicle
 from worker.models import Worker
 from typing import Union
+
 def copy_directory_path(instance:  Union["Client", "Performer"], filename: str) -> str:
     if isinstance(instance, Client):
         document_title = "client"

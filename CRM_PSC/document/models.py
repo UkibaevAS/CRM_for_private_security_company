@@ -35,7 +35,7 @@ class Passport(models.Model):
         verbose_name = 'Паспорт'
         verbose_name_plural = 'Паспорта'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
     date_expiration = models.DateField(null=True, blank=True, verbose_name='Дата окончания действия')
@@ -54,7 +54,7 @@ class Driving_license(models.Model):
         verbose_name = 'Водительское удостоверение'
         verbose_name_plural = 'Водительские удостоверения'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -72,7 +72,7 @@ class Security_license(models.Model):
         verbose_name = 'Удостоверение частного охранника'
         verbose_name_plural = 'Удостоверения частного охранника'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -90,7 +90,7 @@ class Medical_certificate(models.Model):
         verbose_name = 'Медицинская справка'
         verbose_name_plural = 'Медицинские справки'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -109,7 +109,7 @@ class Periodic_inspection(models.Model):
         verbose_name = 'Периодическая проверка'
         verbose_name_plural = 'Периодические проверки'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -125,7 +125,7 @@ class Electrical_certificate(models.Model):
         verbose_name = 'Удостоверение по ЭБ'
         verbose_name_plural = 'Удостоверения по ЭБ'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456",
                                          verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -143,9 +143,9 @@ class Vehicle_passport(models.Model):
         verbose_name = 'Паспорт ТС'
         verbose_name_plural = 'Паспорта ТС'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     VIN_number = models.CharField(max_length=20, verbose_name='VIN номер')
-    license_plate = models.CharField(max_length=10, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
+    license_plate = models.CharField(max_length=9, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
     series_and_number = models.CharField(max_length=30, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
     who_issued = models.CharField(max_length=50, null=True, blank=True, verbose_name='Кем выдано')
@@ -163,8 +163,8 @@ class Registration_certificate(models.Model):
         verbose_name = 'Свидетельство о регистрации ТС'
         verbose_name_plural = 'Свидетельства о регистрации ТС'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
-    license_plate = models.CharField(max_length=10, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
+    license_plate = models.CharField(max_length=9, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
     name = models.CharField(max_length=20, verbose_name='Марка автомобиля')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: 7521 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
@@ -180,9 +180,9 @@ class Insurance_policy(models.Model):
         verbose_name = 'Страховой полис'
         verbose_name_plural = 'Страховые полисы'
 
-    owner = models.CharField(max_length=30, verbose_name='Владелец')
+    owner = models.CharField(max_length=50, verbose_name='Владелец')
     vehicle = models.CharField(max_length=20, verbose_name='Марка автомобиля')
-    license_plate = models.CharField(max_length=10, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
+    license_plate = models.CharField(max_length=9, help_text="Формат: У174ТВ774", verbose_name='Номерной знак')
     series_and_number = models.CharField(max_length=30, null=False, blank=False, help_text="Серия и номер: ААА 123456", verbose_name='Серия и номер')
     date_issue = models.DateField(verbose_name='Дата выдачи')
     date_expiration = models.DateField(verbose_name='Дата окончания действия')
@@ -197,7 +197,7 @@ class Briefing(models.Model):
         verbose_name = 'Инструктаж'
         verbose_name_plural = 'Инструктажи'
 
-    owner = models.CharField(max_length=30, help_text="Например: Охрана труда", verbose_name='Дисциплина')
+    owner = models.CharField(max_length=50, help_text="Например: Охрана труда", verbose_name='Дисциплина')
     description = models.TextField(verbose_name='Описание')
     data_briefing = models.DateField(verbose_name='Дата инструктажа')
     data_briefing_next = models.DateField(verbose_name='Дата следующего инструктажа')
