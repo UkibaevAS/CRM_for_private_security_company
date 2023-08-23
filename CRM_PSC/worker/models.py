@@ -43,7 +43,7 @@ class Worker(models.Model):
     phone = models.PositiveBigIntegerField(default=8, null=True, blank=True, help_text="Формат: 83517772233", verbose_name='Телефон')
     address = models.CharField(max_length=150, verbose_name='Адрес проживания')
     date_birth = models.DateField(verbose_name='Дата рождения')
-    official_employment = archived = models.BooleanField(default=False, verbose_name='Официальное трудоустройство')
+    official_employment = models.BooleanField(default=False, verbose_name='Официальное трудоустройство')
     data_employment = models.DateField(null=True, blank=True, verbose_name='Дата трудоустройства')
     organization = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT, related_name="organization")
     department = models.ForeignKey(Department, null=True, blank=True, on_delete=models.PROTECT)
@@ -58,7 +58,7 @@ class Worker(models.Model):
     periodic_inspection = models.ForeignKey(Periodic_inspection, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Периодическая проверка')
     electrical_certificate = models.ForeignKey(Electrical_certificate, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Удостоверение по ЭБ')
     # uniforms = models.ManyToManyField(Uniform, null=True, blank=True, related_name="uniforms", verbose_name='Униформа')
-    archived = models.BooleanField(default=False, verbose_name='Уволен')
+    #archived = models.BooleanField(default=False, verbose_name='Уволен')
 
     def __str__(self):
         return f"{self.second_name} {self.first_name} {self.middle_name}"
