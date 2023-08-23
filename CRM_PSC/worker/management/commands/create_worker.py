@@ -41,8 +41,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # conn = sqlite3.connect(r'C:\Users\Себастьян Перейро\Documents\GitHub\CRM_for_private_security_company\CRM_PSC\db.sqlite3')
-        conn = sqlite3.connect('/home/andrey/PycharmProjects/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
-        # conn = sqlite3.connect('/home/einsatz174/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
+        # conn = sqlite3.connect('/home/andrey/PycharmProjects/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
+        conn = sqlite3.connect('/home/einsatz174/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
         # cursor = conn.cursor()
         self.stdout.write("Create firm")
         x = 5
