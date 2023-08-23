@@ -14,3 +14,4 @@ class VehicleForm(forms.ModelForm):
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
     form = VehicleForm
+    ordering = ['license_plate']
