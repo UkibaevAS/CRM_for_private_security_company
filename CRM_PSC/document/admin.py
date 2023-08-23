@@ -16,6 +16,7 @@ class PassportForm(forms.ModelForm):
 @admin.register(Passport)
 class PassportAdmin(admin.ModelAdmin):
     form = PassportForm
+    ordering = ['owner']
 
 
 class Driving_licenseForm(forms.ModelForm):
@@ -27,6 +28,7 @@ class Driving_licenseForm(forms.ModelForm):
 @admin.register(Driving_license)
 class DocumentAdmin(admin.ModelAdmin):
     form = Driving_licenseForm
+    ordering = ['owner']
 
 
 class Security_licenseForm(forms.ModelForm):
@@ -38,6 +40,7 @@ class Security_licenseForm(forms.ModelForm):
 @admin.register(Security_license)
 class Security_licenseAdmin(admin.ModelAdmin):
     form = Security_licenseForm
+    ordering = ['owner']
 
 
 class Medical_certificateForm(forms.ModelForm):
@@ -49,6 +52,7 @@ class Medical_certificateForm(forms.ModelForm):
 @admin.register(Medical_certificate)
 class Medical_certificateAdmin(admin.ModelAdmin):
     form = Medical_certificateForm
+    ordering = ['owner']
 
 
 class Periodic_inspectionForm(forms.ModelForm):
@@ -60,6 +64,7 @@ class Periodic_inspectionForm(forms.ModelForm):
 @admin.register(Periodic_inspection)
 class Periodic_inspectionAdmin(admin.ModelAdmin):
     form = Periodic_inspectionForm
+    ordering = ['owner']
 
 
 class Electrical_certificateForm(forms.ModelForm):
@@ -71,6 +76,7 @@ class Electrical_certificateForm(forms.ModelForm):
 @admin.register(Electrical_certificate)
 class Electrical_certificateAdmin(admin.ModelAdmin):
     form = Electrical_certificateForm
+    ordering = ['owner']
 
 
 class Registration_certificateForm(forms.ModelForm):
@@ -82,6 +88,7 @@ class Registration_certificateForm(forms.ModelForm):
 @admin.register(Registration_certificate)
 class Registration_certificateAdmin(admin.ModelAdmin):
     form = Registration_certificateForm
+    ordering = ['license_plate']
 
 
 class Vehicle_passportForm(forms.ModelForm):
@@ -93,6 +100,7 @@ class Vehicle_passportForm(forms.ModelForm):
 @admin.register(Vehicle_passport)
 class Vehicle_passportAdmin(admin.ModelAdmin):
     form = Vehicle_passportForm
+    ordering = ['license_plate']
 
 
 class Insurance_policyForm(forms.ModelForm):
@@ -104,6 +112,7 @@ class Insurance_policyForm(forms.ModelForm):
 @admin.register(Insurance_policy)
 class Insurance_policyAdmin(admin.ModelAdmin):
     form = Insurance_policyForm
+    ordering = ['license_plate']
 
 
 class BriefingForm(forms.ModelForm):
@@ -115,3 +124,4 @@ class BriefingForm(forms.ModelForm):
 @admin.register(Briefing)
 class BriefingAdmin(admin.ModelAdmin):
     form = BriefingForm
+    ordering = ['owner']

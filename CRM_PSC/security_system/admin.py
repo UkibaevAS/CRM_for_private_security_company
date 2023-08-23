@@ -6,17 +6,17 @@ from django import forms
 from .models import Security_system, Alarm_system, Webcam
 
 
-
 class Security_systemForm(forms.ModelForm):
 
     class Meta:
         model = Security_system
         fields = "__all__"
+        ordering = ['name']
+
+
 @admin.register(Security_system)
 class Security_systemAdmin(admin.ModelAdmin):
     form = Security_systemForm
-    ordering = ['name']
-
 
 
 class Alarm_systemForm(forms.ModelForm):
@@ -29,6 +29,7 @@ class Alarm_systemForm(forms.ModelForm):
 @admin.register(Alarm_system)
 class Alarm_systemAdmin(admin.ModelAdmin):
     form = Alarm_systemForm
+    ordering = ['name']
 
 
 class WebcamForm(forms.ModelForm):
@@ -41,3 +42,4 @@ class WebcamForm(forms.ModelForm):
 @admin.register(Webcam)
 class WebcamAdmin(admin.ModelAdmin):
     form = WebcamForm
+    ordering = ['name']

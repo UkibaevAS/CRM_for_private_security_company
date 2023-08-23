@@ -24,7 +24,6 @@ class Affiliated_companyAdmin(admin.ModelAdmin):
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = "name", "manager",
     list_display_links = ("name",)
-    ordering = ["name"],
     search_fields = "name", "manager",
     fieldsets = [
         (None, {
@@ -36,7 +35,6 @@ class DepartmentAdmin(admin.ModelAdmin):
 class PositionAdmin(admin.ModelAdmin):
     list_display = "name",
     list_display_links = ("name",)
-    ordering = ["name"],
     search_fields = "name",
     fieldsets = [
         (None, {
