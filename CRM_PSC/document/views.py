@@ -39,65 +39,65 @@ current_date_plus_60_day = datetime.now() + timedelta(timedelta1)  # вычис�
 
 class PassportListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Passport.objects.filter(date_expiration__lte=current_date_plus_60_day)
-        serialized = PassportSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Passport.objects.all()
+        # data = Passport.objects.filter(date_expiration__lte=current_date_plus_60_day)
         # serialized = PassportSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Passport.objects.all()
+        serialized = PassportSerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 class Driving_licenseListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Driving_license.objects.filter(date_expiration__lte=current_date_plus_60_day)
-        serialized = Driving_licenseSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Driving_license.objects.all()
+        # data = Driving_license.objects.filter(date_expiration__lte=current_date_plus_60_day)
         # serialized = Driving_licenseSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Driving_license.objects.all()
+        serialized = Driving_licenseSerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 
 class Security_licenseListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Security_license.filter(date_expiration__lte=current_date_plus_60_day)
-        serialized = Security_licenseSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Security_license.objects.all()
+        # data = Security_license.filter(date_expiration__lte=current_date_plus_60_day)
         # serialized = Security_licenseSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Security_license.objects.all()
+        serialized = Security_licenseSerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 class Medical_certificateListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Medical_certificate.objects.filter(date_expiration__lte=current_date_plus_60_day)
-        serialized = Medical_certificateSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Medical_certificate.objects.all()
+        # data = Medical_certificate.objects.filter(date_expiration__lte=current_date_plus_60_day)
         # serialized = Medical_certificateSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Medical_certificate.objects.all()
+        serialized = Medical_certificateSerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 
 class Periodic_inspectionListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Periodic_inspection.objects.filter(date_expiration__lte=current_date_plus_60_day)
-        serialized = Periodic_inspectionSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Periodic_inspection.objects.all()
+        # data = Periodic_inspection.objects.filter(date_expiration__lte=current_date_plus_60_day)
         # serialized = Periodic_inspectionSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Periodic_inspection.objects.all()
+        serialized = Periodic_inspectionSerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 
 class Electrical_certificateListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Electrical_certificate.objects.filter(test_date__lte=current_date_plus_60_day)
-        serialized = Electrical_certificateSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Electrical_certificate.objects.all()
+        # data = Electrical_certificate.objects.filter(test_date__lte=current_date_plus_60_day)
         # serialized = Electrical_certificateSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Electrical_certificate.objects.all()
+        serialized = Electrical_certificateSerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 class Vehicle_passportListView(APIView):
@@ -116,20 +116,20 @@ class Registration_certificateListView(APIView):
 
 class Insurance_policyListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Insurance_policy.objects.filter(date_expiration__lte=current_date_plus_60_day)
-        serialized = Insurance_policySerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Insurance_policy.objects.all()
+        # data = Insurance_policy.objects.filter(date_expiration__lte=current_date_plus_60_day)
         # serialized = Insurance_policySerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Insurance_policy.objects.all()
+        serialized = Insurance_policySerializer(data, many=True)
+        return Response({'document': serialized.data})
 
 
 
 class BriefingListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Briefing.objects.filter(data_briefing_next__lte=current_date_plus_60_day)
-        serialized = BriefingSerializer(data, many=True)
-        return Response({'document': serialized.data})
-        # data = Briefing.objects.all()
+        # data = Briefing.objects.filter(data_briefing_next__lte=current_date_plus_60_day)
         # serialized = BriefingSerializer(data, many=True)
         # return Response({'document': serialized.data})
+        data = Briefing.objects.all()
+        serialized = BriefingSerializer(data, many=True)
+        return Response({'document': serialized.data})
