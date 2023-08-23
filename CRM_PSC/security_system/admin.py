@@ -6,24 +6,17 @@ from django import forms
 from .models import Security_system, Alarm_system, Webcam
 
 
+
 class Security_systemForm(forms.ModelForm):
 
     class Meta:
         model = Security_system
         fields = "__all__"
 @admin.register(Security_system)
-class GunAdmin(admin.ModelAdmin):
+class Security_systemAdmin(admin.ModelAdmin):
     form = Security_systemForm
-    ordering = ['license_plate']
-@admin.register(Security_system)
-class GunAdmin(admin.ModelAdmin):
-    form = Security_systemForm
-    ordering = ['license_plate']
+    ordering = ['name']
 
-@admin.register(Security_system)
-class GunAdmin(admin.ModelAdmin):
-    form = Security_systemForm
-    ordering = ['license_plate']
 
 
 class Alarm_systemForm(forms.ModelForm):
