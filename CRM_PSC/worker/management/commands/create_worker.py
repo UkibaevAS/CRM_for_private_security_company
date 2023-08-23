@@ -87,7 +87,7 @@ class Command(BaseCommand):
             )
 
             date_issue = fake.date_between(start_date="-{}y".format(1), end_date="today")
-            expiration_date = date_issue + timedelta(days=365 * 10)
+            expiration_date = date_issue + timedelta(days=365)
             insurance_policy, created = Insurance_policy.objects.get_or_create(
                 owner=owner_company,
                 vehicle=name,
