@@ -62,7 +62,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"{x} affiliated_company created"))
 
         self.stdout.write("Create auto")
-        x1 = 15
+        x1 = 10
         for _ in range(x1):
             owner_company = random.choice(companies)
             license_plate = f'A{random.randint(100, 999)}TC174RUS'
@@ -117,7 +117,7 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS(f"{x} insurance_policy and vehicles created"))
 
-        n = 100
+        n = 50
 
         for _ in range(n):
             gender = fake.random_element(['Male', 'Female'])  # Случайно выбираем мужской или женский пол
