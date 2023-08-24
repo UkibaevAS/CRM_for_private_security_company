@@ -1,25 +1,15 @@
-from django.urls import path, include
-
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 
 from .views import (
-    Security_systemViewSet,
-    Alarm_systemViewSet,
-    WebcamViewSet,
+    Security_systemListView,
+    Alarm_systemListView,
+    WebcamListView,
 )
 app_name = 'security_system'
 
-routers1 = DefaultRouter()
-routers1.register('security_system', Security_systemViewSet)
-
-routers2 = DefaultRouter()
-routers2.register('_system', Alarm_systemViewSet)
-
-routers3 = DefaultRouter()
-routers3.register('cam', WebcamViewSet)
 
 urlpatterns = [
-    path('', include(routers1.urls)),
-    path('alarm', include(routers2.urls)),
-    path('web', include(routers3.urls)),
+    path('', Security_systemListView.as_view(), name='security_system'),
+    path('alarm_system', Alarm_systemListView.as_view(), name='alarm_system'),
+    path('webcam', WebcamListView.as_view(), name='webcam'),
 ]

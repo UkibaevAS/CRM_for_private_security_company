@@ -1,4 +1,6 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .serializers import (
     Security_systemSerializer,
@@ -12,16 +14,23 @@ from .models import (
 )
 
 
-class Security_systemViewSet(ModelViewSet):
-    queryset = Security_system.objects.all()
-    serializer_class = Security_systemSerializer
+class Security_systemListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Security_system.objects.all()
+        serialized = Security_systemSerializer(data, many=True)
+        return Response({'security_system': serialized.data})
 
 
-class Alarm_systemViewSet(ModelViewSet):
-    queryset = Alarm_system.objects.all()
-    serializer_class = Alarm_systemSerializer
+
+class Alarm_systemListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Alarm_system.objects.all()
+        serialized = Alarm_systemSerializer(data, many=True)
+        return Response({'alarm_system': serialized.data})
 
 
-class WebcamViewSet(ModelViewSet):
-    queryset = Webcam.objects.all()
-    serializer_class = WebcamSerializer
+class WebcamListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Webcam.objects.all()
+        serialized = WebcamSerializer(data, many=True)
+        return Response({'webcam': serialized.data})

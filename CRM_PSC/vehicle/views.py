@@ -7,7 +7,7 @@ from .serializers import VehicleSerializer, VehicleDetailSerializer
 from .models import Vehicle
 
 
-class VehicleistView(APIView):
+class VehicleListView(APIView):
     def get(self, request: Request) -> Response:
         data = Vehicle.objects.all()
         serialized = VehicleSerializer(data, many=True)
