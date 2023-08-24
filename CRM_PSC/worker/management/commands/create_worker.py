@@ -65,7 +65,7 @@ class Command(BaseCommand):
         x1 = 10
         for _ in range(x1):
             owner_company = random.choice(companies)
-            license_plate = f'A{random.randint(100, 999)}TC174RUS'
+            license_plate = f'Б{random.randint(100, 999)}ДФ174RUS'
             VIN_number = f'{random.randint(10000000, 99999999)}'
             name = transport.car()
 
