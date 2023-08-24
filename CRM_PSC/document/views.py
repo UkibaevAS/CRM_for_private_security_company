@@ -60,7 +60,7 @@ class Driving_licenseListView(APIView):
 
 class Security_licenseListView(APIView):
     def get(self, request: Request) -> Response:
-        data = Security_license.filter(date_expiration__lte=current_date_plus_60_day)
+        data = Security_license.objects.filter(date_expiration__lte=current_date_plus_60_day)
         serialized = Security_licenseSerializer(data, many=True)
         return Response({'document': serialized.data})
         # data = Security_license.objects.all()
