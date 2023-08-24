@@ -15,8 +15,8 @@ class VehicleistView(APIView):
 
 
 class VehicleDetailView(APIView):
-    def get(self, request, last_name):
-        vehicle = Vehicle.objects.filter(second_name=last_name)
+    def get(self, request, license_plate):
+        vehicle = Vehicle.objects.filter(license_plate=f'{license_plate}RUS')
         if vehicle:
             serialized = VehicleDetailSerializer(vehicle, many=True, context={'request': request})
             return Response({'vehicle': serialized.data})

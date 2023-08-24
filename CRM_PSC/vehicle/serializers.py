@@ -4,6 +4,7 @@ from .models import Vehicle
 
 
 class VehicleSerializer(serializers.ModelSerializer):
+    owner_company = serializers.CharField(source='owner_company.name')
     class Meta:
         model = Vehicle
         fields = [
@@ -14,30 +15,28 @@ class VehicleSerializer(serializers.ModelSerializer):
             'branding',
             'mileage',
             'service_date',
-
         ]
 
 class VehicleDetailSerializer(serializers.ModelSerializer):
     owner_company = serializers.CharField(source='owner_company.name')
-    photo = serializers.SerializerMethodField()
+
     class Meta:
         model = Vehicle
         fields = [
             'name',
+            'branding',
             'VIN_number',
+            'license_plate',
+            'owner_company',
+            'owner_private',
             'date_manufacture',
             'receipt_date',
+            'insurance_policy_limit',
+            'mileage',
+            'service_date',
             'engine_oil',
             'engine_oil_viscosity',
-            'license_plate',
-            'owner_private',
-            'owner_company',
-            'branding',
         ]
 
-    def get_photo(self, obj):
-        request = self.context.get('request')
-        if obj.photo:  # Проверяем, что фото существует
-            return request.build_absolute_uri(obj.photo.url)
-        return None
+
 
