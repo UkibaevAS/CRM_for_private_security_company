@@ -8,6 +8,7 @@ from .models import (
 
 
 class Security_systemSerializer(serializers.ModelSerializer):
+    owner = serializers.CharField(source='owner.name')
     class Meta:
         model = Security_system
         fields = [
@@ -21,6 +22,7 @@ class Security_systemSerializer(serializers.ModelSerializer):
 
 
 class Alarm_systemSerializer(serializers.ModelSerializer):
+    owner = serializers.CharField(source='owner.name')
     class Meta:
         model = Alarm_system
         fields = [
@@ -34,6 +36,7 @@ class Alarm_systemSerializer(serializers.ModelSerializer):
 
 
 class WebcamSerializer(serializers.ModelSerializer):
+    owner = serializers.CharField(source='owner.name')
     class Meta:
         model = Webcam
         fields = [

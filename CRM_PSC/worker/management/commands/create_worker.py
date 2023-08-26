@@ -12,23 +12,25 @@ from mimesis import Transport, Locale
 from faker import Faker
 
 from structure_of_company.models import Affiliated_company
-from document.models import (Passport,
-                             Driving_license,
-                             Security_license,
-                             Medical_certificate,
-                             Periodic_inspection,
-                             Electrical_certificate,
-                             Insurance_policy,
-                             Vehicle_passport,
-                             Registration_certificate
-                             )
+from document.models import (
+    Passport,
+    Driving_license,
+    Security_license,
+    Medical_certificate,
+    Periodic_inspection,
+    Electrical_certificate,
+    Insurance_policy,
+    Vehicle_passport,
+    Registration_certificate
+)
 
 from vehicle.models import Vehicle
 
-from security_system.models import (Security_system,
-                                    Alarm_system,
-                                    Webcam
-                                    )
+from security_system.models import (
+    Security_system,
+    Alarm_system,
+    Webcam
+)
 
 fake = Faker('ru_RU')
 ru_spec = RussiaSpecProvider()
