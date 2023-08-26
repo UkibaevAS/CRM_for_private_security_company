@@ -99,9 +99,9 @@ class Webcam(models.Model):
     owner = models.ForeignKey(Affiliated_company, null=True, blank=True, on_delete=models.PROTECT,
                               verbose_name='Числится на балансе')
     installation_date = models.DateField(null=True, blank=True, verbose_name='Дата установки')
-    maintenance_interval = models.CharField(max_length=15, null=False, blank=False, db_index=True,
+    maintenance_interval = models.CharField(max_length=15, null=True, blank=True,
                                             help_text="Количество месяцев: XX", verbose_name='Периодичность ТО')
-    date_manufacture = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата производства')
+    date_manufacture = models.DateField(null=True, blank=True, verbose_name='Дата производства')
     receipt_date = models.DateField(null=True, blank=True, verbose_name='Дата поступления')
     service_date = models.DateField(null=True, blank=True, db_index=True, verbose_name='Дата проведенного ТО')
     service_date_next = models.DateField(null=True, blank=True, verbose_name='Дата следующего ТО')

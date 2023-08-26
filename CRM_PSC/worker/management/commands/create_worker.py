@@ -25,14 +25,12 @@ from document.models import (Passport,
 
 from vehicle.models import Vehicle
 
+from CRM_PSC.security_system.models import Security_system, Alarm_system, Webcam
 
-
-
-
-#dt = Datetime()
 fake = Faker('ru_RU')
 ru_spec = RussiaSpecProvider()
 transport = Transport()
+
 
 class Command(BaseCommand):
     """
@@ -44,8 +42,15 @@ class Command(BaseCommand):
         # conn = sqlite3.connect('/home/andrey/PycharmProjects/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
         conn = sqlite3.connect('/home/einsatz174/CRM_for_private_security_company/CRM_PSC/db.sqlite3')
         # cursor = conn.cursor()
+        x = 5      # Количество дочерних компаний
+        x1 = 10    # Количество автомобилей
+        x2 = 30    # Количество ТСО
+        n = 50     # Количество сотрудников
+        """
+            Creates firm
+        """
         self.stdout.write("Create firm")
-        x = 5
+
         companies = []  # Переменная для хранения созданных компаний
         for _ in range(x):
             affiliated_company, created = Affiliated_company.objects.get_or_create(
@@ -60,15 +65,19 @@ class Command(BaseCommand):
             companies.append(affiliated_company)  # Сохраняем созданную компанию
 
         self.stdout.write(self.style.SUCCESS(f"{x} affiliated_company created"))
-
+        """
+            Creates auto and vehicle documents
+        """
         self.stdout.write("Create auto")
-        x1 = 10
+
         for _ in range(x1):
             owner_company = random.choice(companies)
             license_plate = f'Б{random.randint(100, 999)}ДФ174RUS'
             VIN_number = f'{random.randint(10000000, 99999999)}'
             name = transport.car()
-
+            """
+                Creates vehicle documents
+            """
             date_issue = fake.date_between(start_date="-{}y".format(7), end_date="today")
             vehicle_passport, created = Vehicle_passport.objects.get_or_create(
                 owner=owner_company,
@@ -96,7 +105,9 @@ class Command(BaseCommand):
                 date_issue=date_issue,
                 date_expiration=expiration_date
             )
-
+            """
+                Creates auto
+            """
             vehicle, created = Vehicle.objects.get_or_create(
                 name=name,
                 VIN_number=VIN_number,
@@ -114,10 +125,67 @@ class Command(BaseCommand):
                 registration_certificate=registration_certificate,
             )
 
-
         self.stdout.write(self.style.SUCCESS(f"{x} insurance_policy and vehicles created"))
 
-        n = 50
+        """
+            Creates Security_system
+        """
+        security_system_name = ['Барьер', 'Крот', 'Забор', 'Страж', 'Защитник', ]
+        alarm_system_name = ['Тревога', 'КТС', 'Сигнал', 'Вызов', 'Вызов', ]
+        webcam_name = ['Samsung', 'Sony', 'Bosch', 'Xiaomi', 'Philips', ]
+        for _ in range(x2):
+            owner_company = random.choice(companies)
+
+            """
+                Creates Security_system
+            """
+            date = fake.date_between(start_date="-{}y".format(2), end_date="today")
+            security_system, created = Security_system.objects.get_or_create(
+                owner=owner_company,
+                name=random.choice(security_system_name),
+                description='Охранная система',
+                factory_number=f'{random.randint(10000000, 99999999)}',
+                installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
+                date_manufacture=fake.date_between(start_date="-{}y".format(5), end_date="today"),
+                receipt_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
+                service_date=date,
+                service_date_next=date + timedelta(days=365),
+            )
+            """
+                Creates Alarm_system
+            """
+            date = fake.date_between(start_date="-{}y".format(2), end_date="today")
+            alarm_system, created = Alarm_system.objects.get_or_create(
+                owner=owner_company,
+                name=random.choice(security_system_name),
+                description='Охранная система',
+                factory_number=f'{random.randint(10000000, 99999999)}',
+                installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
+                date_manufacture=fake.date_between(start_date="-{}y".format(5), end_date="today"),
+                receipt_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
+                service_date=date,
+                service_date_next=date + timedelta(days=365),
+            )
+
+            """
+                Creates Webcam
+            """
+            date = fake.date_between(start_date="-{}y".format(2), end_date="today")
+            webcam, created = Webcam.objects.get_or_create(
+                owner=owner_company,
+                name=random.choice(security_system_name),
+                description='Охранная система',
+                factory_number=f'{random.randint(10000000, 99999999)}',
+                installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
+                date_manufacture=fake.date_between(start_date="-{}y".format(5), end_date="today"),
+                receipt_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
+                service_date=date,
+                service_date_next=date + timedelta(days=365),
+            )
+
+        """
+            Creates Worker
+        """
 
         for _ in range(n):
             gender = fake.random_element(['Male', 'Female'])  # Случайно выбираем мужской или женский пол
@@ -130,7 +198,6 @@ class Command(BaseCommand):
                 first_name = fake.first_name_female()  # Генерируем женское имя
                 second_name = fake.last_name_female()
                 middle_name = fake.middle_name_female()
-
 
             date_issue = fake.date_between(start_date="-{}y".format(15), end_date="today")
             expiration_date = date_issue + timedelta(days=365 * 10)
@@ -200,9 +267,3 @@ class Command(BaseCommand):
             )
 
         self.stdout.write(self.style.SUCCESS(f"{n} workers created"))
-
-
-
-
-
-
