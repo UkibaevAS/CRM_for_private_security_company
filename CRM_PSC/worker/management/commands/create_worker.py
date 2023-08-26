@@ -25,7 +25,10 @@ from document.models import (Passport,
 
 from vehicle.models import Vehicle
 
-from CRM_PSC.security_system.models import Security_system, Alarm_system, Webcam
+from security_system.models import (Security_system,
+                                    Alarm_system,
+                                    Webcam
+                                    )
 
 fake = Faker('ru_RU')
 ru_spec = RussiaSpecProvider()
