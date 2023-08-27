@@ -78,7 +78,7 @@ class Post(models.Model):
     protection_mode = models.CharField(max_length=15, choices=PROTECT_MODE_POST_CHOICES, default='24/7', db_index=True,
                                        verbose_name='Режим охраны')
     start_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-                                       help_text="Начало в: 16.00",
+                                       help_text="Начало в: 08.00",
                                        verbose_name='Начало дневной смены в будни')
     start_day_shift_free_day = models.CharField(max_length=5, null=True, blank=True, db_index=True,
                                                 help_text="Начало в: 08.00",
@@ -91,9 +91,9 @@ class Post(models.Model):
     number_24 = models.PositiveSmallIntegerField(default=0, null=True, blank=True,
                                                       help_text="Количество охранников при круглосуточной охране",
                                                       verbose_name='Количество охранников круглосуточно')
-    number_per_day = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
+    number_per_day = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников в дневную смену",
                                                         verbose_name='Количество охранников в дневную смену')
-    number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
+    number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников в ночную смену",
                                                         verbose_name='Количество охранников в ночную смену')
     performer = models.ForeignKey(Performer, null=True, blank=True, verbose_name='Исполнитель', on_delete=models.PROTECT)
     armors = models.ManyToManyField(Armor, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
