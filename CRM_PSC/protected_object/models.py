@@ -96,12 +96,12 @@ class Post(models.Model):
     number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
                                                         verbose_name='Количество охранников в ночную смену')
     performer = models.ForeignKey(Performer, null=True, blank=True, verbose_name='Исполнитель', on_delete=models.PROTECT)
-    armors = models.ForeignKey(Armor, null=True, blank=True, on_delete=models.PROTECT, related_name="armors_post", verbose_name='Средства бронезащиты')
-    guns = models.ForeignKey(Gun, null=True, blank=True, on_delete=models.PROTECT, related_name="guns_post", verbose_name='Вооружение')
-    radio_station = models.ForeignKey(Radio_station, null=True, blank=True, on_delete=models.PROTECT, related_name="radio_stations_post", verbose_name='Радиостанция')
-    webcams = models.ForeignKey(Webcam, null=True, blank=True, on_delete=models.PROTECT, related_name="webcams_post", verbose_name='Видеокамеры')
-    alarm_systems = models.ForeignKey(Alarm_system, null=True, blank=True, on_delete=models.PROTECT, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
-    vehicle = models.ForeignKey(Vehicle, null=True, blank=True, on_delete=models.PROTECT, related_name="vehicles_post", verbose_name='Автомобиль')
+    armors = models.ManyToManyField(Armor, null=True, blank=True, on_delete=models.PROTECT, related_name="armors_post", verbose_name='Средства бронезащиты')
+    guns = models.ManyToManyField(Gun, null=True, blank=True, on_delete=models.PROTECT, related_name="guns_post", verbose_name='Вооружение')
+    radio_station = models.ManyToManyField(Radio_station, null=True, blank=True, on_delete=models.PROTECT, related_name="radio_stations_post", verbose_name='Радиостанция')
+    webcams = models.ManyToManyField(Webcam, null=True, blank=True, on_delete=models.PROTECT, related_name="webcams_post", verbose_name='Видеокамеры')
+    alarm_systems = models.ManyToManyField(Alarm_system, null=True, blank=True, on_delete=models.PROTECT, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
+    vehicle = models.ManyToManyField(Vehicle, null=True, blank=True, on_delete=models.PROTECT, related_name="vehicles_post", verbose_name='Автомобиль')
 
     def __str__(self):
         return f"{self.name}"
