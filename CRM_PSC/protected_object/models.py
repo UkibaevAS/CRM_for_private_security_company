@@ -96,11 +96,11 @@ class Post(models.Model):
     number_per_night = models.PositiveSmallIntegerField(default=0, null=True, blank=True, help_text="Количество охранников",
                                                         verbose_name='Количество охранников в ночную смену')
     performer = models.ForeignKey(Performer, null=True, blank=True, verbose_name='Исполнитель', on_delete=models.PROTECT)
-    armors = models.ManyToManyField(Armor, null=True, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
+    armors = models.ManyToManyField(Armor, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
     guns = models.ManyToManyField(Gun, null=True, blank=True, related_name="guns_post", verbose_name='Вооружение')
     radio_station = models.ManyToManyField(Radio_station, null=True, blank=True, related_name="radio_stations_post", verbose_name='Радиостанция')
     webcams = models.ManyToManyField(Webcam, null=True, blank=True, related_name="webcams_post", verbose_name='Видеокамеры')
-    alarm_systems = models.ManyToManyField(Alarm_system, null=True, blank=True, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
+    alarm_systems = models.ManyToManyField(Alarm_system, blank=True, related_name="alarm_systems_post", verbose_name='Средства сигнализации')
     vehicle = models.ManyToManyField(Vehicle, null=True, blank=True, related_name="vehicles_post", verbose_name='Автомобиль')
 
     def __str__(self):
