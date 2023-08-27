@@ -162,7 +162,7 @@ class Command(BaseCommand):
             date = fake.date_between(start_date="-{}y".format(2), end_date="today")
             alarm_system, created = Alarm_system.objects.get_or_create(
                 owner=owner_company,
-                name=random.choice(security_system_name),
+                name=random.choice(alarm_system_name),
                 description='Охранная система',
                 factory_number=f'{random.randint(10000000, 99999999)}',
                 installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
@@ -178,7 +178,7 @@ class Command(BaseCommand):
             date = fake.date_between(start_date="-{}y".format(2), end_date="today")
             webcam, created = Webcam.objects.get_or_create(
                 owner=owner_company,
-                name=random.choice(security_system_name),
+                name=random.choice(webcam_name),
                 description='Охранная система',
                 factory_number=f'{random.randint(10000000, 99999999)}',
                 installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
