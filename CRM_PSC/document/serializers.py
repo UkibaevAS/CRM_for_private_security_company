@@ -85,6 +85,8 @@ class Insurance_policySerializer(serializers.ModelSerializer):
         model = Insurance_policy
         fields = [
             'owner',
+            'license_plate',
+            'vehicle',
             'date_expiration',
         ]
 
