@@ -5,6 +5,7 @@ from security_system.serializers import (
     Security_systemSerializer,
     Alarm_systemSerializer,
 )
+from worker.serializers import WorkerDetailSerializer
 from .models import (
     Client,
     Performer,
@@ -32,6 +33,10 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class Protected_objectSerializer(serializers.ModelSerializer):
+    curator = WorkerDetailSerializer
+    posts = PostSerializer(many=True)
+    client = ClientSerializer
+    performer = PerformerSerializer
     webcams = WebcamSerializer(many=True)
     security_systems = Security_systemSerializer(many=True)
     alarm_systems = Alarm_systemSerializer(many=True)
