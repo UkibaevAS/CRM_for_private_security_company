@@ -1,5 +1,10 @@
 from rest_framework import serializers
 
+from security_system.serializers import (
+    WebcamSerializer,
+    Security_systemSerializer,
+    Alarm_systemSerializer,
+)
 from .models import (
     Client,
     Performer,
@@ -27,7 +32,9 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class Protected_objectSerializer(serializers.ModelSerializer):
-    webcams = serializers.CharField(source='webcams.name')
+    webcams = WebcamSerializer(many=True)
+    security_systems = Security_systemSerializer(many=True)
+    alarm_systems = Alarm_systemSerializer(many=True)
     class Meta:
         model = Protected_object
         fields = "__all__"
