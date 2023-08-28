@@ -27,6 +27,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class Protected_objectSerializer(serializers.ModelSerializer):
+    webcams = serializers.CharField(source='webcam.name')
     class Meta:
         model = Protected_object
         fields = "__all__"
