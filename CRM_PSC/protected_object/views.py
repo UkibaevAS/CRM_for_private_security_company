@@ -1,4 +1,6 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .serializers import (
     ClientSerializer,
@@ -14,22 +16,30 @@ from .models import (
 )
 
 
-class ClientViewSet(ModelViewSet):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+class ClientListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Client.objects.all()
+        serialized = ClientSerializer(data, many=True)
+        return Response({'clients': serialized.data})
 
 
-class PerformerViewSet(ModelViewSet):
-    queryset = Performer.objects.all()
-    serializer_class = PerformerSerializer
+class PerformerListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Performer.objects.all()
+        serialized = PerformerSerializer(data, many=True)
+        return Response({'performers': serialized.data})
 
 
-class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class PostListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Post.objects.all()
+        serialized = PostSerializer(data, many=True)
+        return Response({'posts': serialized.data})
 
 
-class Protected_objectViewSet(ModelViewSet):
-    queryset = Protected_object.objects.all()
-    serializer_class = Protected_objectSerializer
+class Protected_objectListView(APIView):
+    def get(self, request: Request) -> Response:
+        data = Protected_object.objects.all()
+        serialized = Protected_objectSerializer(data, many=True)
+        return Response({'protected_objects': serialized.data})
 

@@ -107,7 +107,7 @@ class Protected_object(models.Model):
     curator = models.ForeignKey(Worker, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Куратор')
     posts = models.ManyToManyField(Post, blank=True, related_name="posts", verbose_name='Посты')
     client = models.ForeignKey(Client, on_delete=models.PROTECT, verbose_name='Заказчик')
-    performer = models.ForeignKey(Performer, on_delete=models.PROTECT, verbose_name='Кто реагирует на сработки')
+    performer = models.ForeignKey(Performer, blank=True, on_delete=models.PROTECT, verbose_name='Кто реагирует на сработки')
     armors = models.ManyToManyField(Armor, blank=True, related_name="armors_post", verbose_name='Средства бронезащиты')
     guns = models.ManyToManyField(Gun, blank=True, related_name="guns_post", verbose_name='Вооружение')
     radio_station = models.ManyToManyField(Radio_station, blank=True, related_name="radio_stations_post",
