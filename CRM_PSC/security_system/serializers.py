@@ -16,7 +16,7 @@ class Security_systemSerializer(serializers.ModelSerializer):
             'description',
             'owner',
             'installation_date',
-            'service_date',
+            'factory_number',
             'service_date_next',
         ]
 
@@ -30,7 +30,7 @@ class Alarm_systemSerializer(serializers.ModelSerializer):
             'description',
             'owner',
             'installation_date',
-            'service_date',
+            'factory_number',
             'service_date_next',
         ]
 
@@ -44,6 +44,6 @@ class WebcamSerializer(serializers.ModelSerializer):
             'description',
             'owner',
             'installation_date',
-            'service_date',
+            'factory_number',
             'service_date_next',
         ]

@@ -40,6 +40,9 @@ class Protected_objectSerializer(serializers.ModelSerializer):
     webcams = WebcamSerializer(many=True)
     security_systems = Security_systemSerializer(many=True)
     alarm_systems = Alarm_systemSerializer(many=True)
+    # armors
+    # guns
+    # radio_station
     class Meta:
         model = Protected_object
         fields = "__all__"
