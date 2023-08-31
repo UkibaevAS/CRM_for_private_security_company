@@ -4,10 +4,11 @@ import random
 from django.core.management import BaseCommand
 
 from datetime import datetime, timedelta
+
 from worker.models import Worker
 from mimesis.builtins import RussiaSpecProvider
 from mimesis import Transport, Locale
-# from mimesis.
+
 
 from faker import Faker
 
@@ -49,7 +50,7 @@ class Command(BaseCommand):
         # cursor = conn.cursor()
         x = 5      # Количество дочерних компаний
         x1 = 10    # Количество автомобилей
-        x2 = 30    # Количество ТСО
+        x2 = 12    # Количество ТСО
         n = 50     # Количество сотрудников
         """
             Creates firm
@@ -133,8 +134,13 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"{x} insurance_policy and vehicles created"))
 
         """
-            Creates Security_system
+            Creates Posts & Security_system
         """
+        posts = []  # Переменная для хранения созданных постов
+        security_systems = []
+        alarm_systems = []
+        webcams = []
+        protected_object_name = 'Больница №'
         security_system_name = ['Барьер', 'Крот', 'Забор', 'Страж', 'Защитник', ]
         alarm_system_name = ['Тревога', 'КТС', 'Сигнал', 'Вызов', 'Вызов', ]
         webcam_name = ['Samsung', 'Sony', 'Bosch', 'Xiaomi', 'Philips', ]
@@ -156,6 +162,7 @@ class Command(BaseCommand):
                 service_date=date,
                 service_date_next=date + timedelta(days=365),
             )
+            security_systems.append(security_system)
             """
                 Creates Alarm_system
             """
@@ -163,7 +170,7 @@ class Command(BaseCommand):
             alarm_system, created = Alarm_system.objects.get_or_create(
                 owner=owner_company,
                 name=random.choice(alarm_system_name),
-                description='Охранная система',
+                description='Сигнальная система',
                 factory_number=f'{random.randint(10000000, 99999999)}',
                 installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
                 date_manufacture=fake.date_between(start_date="-{}y".format(5), end_date="today"),
@@ -171,6 +178,7 @@ class Command(BaseCommand):
                 service_date=date,
                 service_date_next=date + timedelta(days=365),
             )
+            alarm_systems.append(alarm_system)
 
             """
                 Creates Webcam
@@ -187,6 +195,10 @@ class Command(BaseCommand):
                 service_date=date,
                 service_date_next=date + timedelta(days=365),
             )
+            webcams.append(webcam)
+
+
+
 
         """
             Creates Worker
