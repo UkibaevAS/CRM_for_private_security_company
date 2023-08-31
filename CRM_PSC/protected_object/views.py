@@ -43,3 +43,5 @@ class Protected_objectListView(APIView):
         serialized = Protected_objectSerializer(data, many=True)
         return Response({'protected_objects': serialized.data})
 
+
+

@@ -71,20 +71,20 @@ class Post(models.Model):
     name = models.CharField(max_length=30, db_index=True, verbose_name='Название')
     protection_mode = models.CharField(max_length=15, choices=PROTECT_MODE_POST_CHOICES, default='24/7', db_index=True,
                                        verbose_name='Режим охраны')
-    start_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-                                       help_text="Начало в: 08.00",
-                                       verbose_name='Начало дневной смены в будни')
-    start_day_shift_free_day = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-                                                help_text="Начало в: 08.00",
-                                                verbose_name='Начало дневной смены в выходные')
-    end_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-                                                help_text="Окончание в: 17.00",
-                                                verbose_name='Окончание дневной смены в выходные')
-    start_night_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-                                         help_text="Начало в: 20.00",
-                                         verbose_name='Начало ночной смены')
-    phone = models.PositiveBigIntegerField(default=8, null=True, blank=True, db_index=True,
-                                           help_text="Формат: 83517772233", verbose_name='Телефон')
+    # start_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
+    #                                    help_text="Начало в: 08.00",
+    #                                    verbose_name='Начало дневной смены в будни')
+    # start_day_shift_free_day = models.CharField(max_length=5, null=True, blank=True, db_index=True,
+    #                                             help_text="Начало в: 08.00",
+    #                                             verbose_name='Начало дневной смены в выходные')
+    # end_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
+    #                                             help_text="Окончание в: 17.00",
+    #                                             verbose_name='Окончание дневной смены')
+    # start_night_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
+    #                                      help_text="Начало в: 20.00",
+    #                                      verbose_name='Начало ночной смены')
+    # phone = models.PositiveBigIntegerField(default=8, null=True, blank=True, db_index=True,
+    #                                        help_text="Формат: 83517772233", verbose_name='Телефон')
     number_24 = models.PositiveSmallIntegerField(default=0, null=True, blank=True,
                                                       help_text="Количество охранников при круглосуточной охране",
                                                       verbose_name='Количество охранников круглосуточно')

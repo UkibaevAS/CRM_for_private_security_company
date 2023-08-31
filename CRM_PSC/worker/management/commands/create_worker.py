@@ -136,11 +136,9 @@ class Command(BaseCommand):
         """
             Creates Posts & Security_system
         """
-        posts = []  # Переменная для хранения созданных постов
         security_systems = []
         alarm_systems = []
         webcams = []
-        protected_object_name = 'Больница №'
         security_system_name = ['Барьер', 'Крот', 'Забор', 'Страж', 'Защитник', ]
         alarm_system_name = ['Тревога', 'КТС', 'Сигнал', 'Вызов', 'Вызов', ]
         webcam_name = ['Samsung', 'Sony', 'Bosch', 'Xiaomi', 'Philips', ]
@@ -187,7 +185,7 @@ class Command(BaseCommand):
             webcam, created = Webcam.objects.get_or_create(
                 owner=owner_company,
                 name=random.choice(webcam_name),
-                description='Охранная система',
+                description='Видеокамера',
                 factory_number=f'{random.randint(10000000, 99999999)}',
                 installation_date=fake.date_between(start_date="-{}y".format(3), end_date="today"),
                 date_manufacture=fake.date_between(start_date="-{}y".format(5), end_date="today"),
