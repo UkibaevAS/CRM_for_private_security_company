@@ -18,41 +18,34 @@ def copy_directory_path(instance:  Union["Client", "Performer"], filename: str) 
 
 
 
+class Organization(models.Model):
+    name = models.CharField(max_length=50, db_index=True, verbose_name='Название организации')
+    address = models.CharField(max_length=100, db_index=True, verbose_name='Адрес')
+    phone = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233", verbose_name='Телефон')
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    director = models.CharField(max_length=75, verbose_name='Директор')
+    contact_person = models.CharField(max_length=75, verbose_name='Контактное лицо')
+    phone_contact_person = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233",
+                                                          verbose_name='Телефон контактного лица')
+    def __str__(self):
+        return f"{self.name}"
 
-class Client(models.Model):
+
+class Client(Organization):
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural ='Клиенты'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Название организации')
-    address = models.CharField(max_length=100, db_index=True, verbose_name='Адрес')
-    phone = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233", verbose_name='Телефон')
-    email = models.EmailField(max_length=254, null=True, blank=True)
-    director = models.CharField(max_length=75, verbose_name='Директор')
-    contact_person = models.CharField(max_length=75, verbose_name='Контактное лицо')
-    phone_contact_person = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233",
-                                                          verbose_name='Телефон контактного лица')
     contract = models.FileField(null=True, blank=True, upload_to=copy_directory_path, verbose_name='Договор об оказании услуг')
 
-    def __str__(self):
-        return f"{self.name}"
 
-class Performer(models.Model):
+
+class Performer(Organization):
     class Meta:
         verbose_name = 'Исполнитель'
         verbose_name_plural = 'Исполнители'
 
-    name = models.CharField(max_length=50, db_index=True, verbose_name='Название организации')
-    address = models.CharField(max_length=100, db_index=True, verbose_name='Адрес')
-    phone = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233", verbose_name='Телефон')
-    email = models.EmailField(max_length=254, null=True, blank=True)
-    director = models.CharField(max_length=75, verbose_name='Директор')
-    contact_person = models.CharField(max_length=75, verbose_name='Контактное лицо')
-    phone_contact_person = models.PositiveBigIntegerField(default=8, help_text="Формат: 83517772233",
-                                                          verbose_name='Телефон контактного лица')
 
-    def __str__(self):
-        return f"{self.name}"
 
 
 
@@ -71,20 +64,6 @@ class Post(models.Model):
     name = models.CharField(max_length=30, db_index=True, verbose_name='Название')
     protection_mode = models.CharField(max_length=15, choices=PROTECT_MODE_POST_CHOICES, default='24/7', db_index=True,
                                        verbose_name='Режим охраны')
-    # start_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-    #                                    help_text="Начало в: 08.00",
-    #                                    verbose_name='Начало дневной смены в будни')
-    # start_day_shift_free_day = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-    #                                             help_text="Начало в: 08.00",
-    #                                             verbose_name='Начало дневной смены в выходные')
-    # end_day_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-    #                                             help_text="Окончание в: 17.00",
-    #                                             verbose_name='Окончание дневной смены')
-    # start_night_shift = models.CharField(max_length=5, null=True, blank=True, db_index=True,
-    #                                      help_text="Начало в: 20.00",
-    #                                      verbose_name='Начало ночной смены')
-    # phone = models.PositiveBigIntegerField(default=8, null=True, blank=True, db_index=True,
-    #                                        help_text="Формат: 83517772233", verbose_name='Телефон')
     number_24 = models.PositiveSmallIntegerField(default=0, null=True, blank=True,
                                                       help_text="Количество охранников при круглосуточной охране",
                                                       verbose_name='Количество охранников круглосуточно')

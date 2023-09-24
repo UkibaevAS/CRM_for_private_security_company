@@ -1,5 +1,4 @@
 from django.db import models
-# from django.utils.translation import gettext_lazy as _
 
 from structure_of_company.models import Affiliated_company
 from document.models import Registration_certificate, Vehicle_passport, Insurance_policy
